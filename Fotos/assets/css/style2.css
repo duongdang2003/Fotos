@@ -1,0 +1,29 @@
+﻿* {
+    font-family: Roboto;
+}
+
+.horizontalMenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 10000;
+}
+
+    .horizontalMenu > li {
+        padding: 10px 30px;
+        font-size: 20px;
+        color: black;
+        list-style-type: none;
+    }
+
+a, a:link, a:visited, a:focus, a:hover, a:active {
+    color: black;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+#menuLogo {
+    font-size: 30px;
+    font-weight: bold;
+}
