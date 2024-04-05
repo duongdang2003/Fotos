@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Models.Framework.Luot_thich_anh>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Photo likes</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Dashboard")">Dashboard</a></li>
+            <li class="breadcrumb-item active">Tables</li>
+            <li class="breadcrumb-item active">Photo likes</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Photo likes
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Photo title</th>
+                            <th>Like date</th>
+                            <th data-sortable="false"></th>
+                            <th data-sortable="false"></th>
+                            <th data-sortable="false"></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Username</th>
+                            <th>Photo title</th>
+                            <th>Like date</th>
+                            <th data-sortable="false"></th>
+                            <th data-sortable="false"></th>
+                            <th data-sortable="false"></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Nguoi_dung.ten_nguoi_dung)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Photo.tieu_de_anh)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ngay_thich)</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", new { id = item.id_luot_thich })" class="edit-link">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Details", new { id = item.id_luot_thich })" class="edit-link">
+                                        <i class="fa fa-circle-info"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Delete", new { id = item.id_luot_thich })" class="edit-link">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <a href="@Url.Action("Create", "Luot_thich_anh")" class="edit-link" style="text-decoration: none;">
+            <i class="fa fa-circle-plus"></i> Create new like
+        </a>
+    </div>
+</main>
+

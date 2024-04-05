@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -45,10 +46,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -120,19 +129,41 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Code\SessionHelper.cs" />
+    <Compile Include="Code\UserSession.cs" />
+    <Compile Include="Controllers\Admin\AlbumsController.cs" />
+    <Compile Include="Controllers\Admin\Anh_yeu_thichController.cs" />
+    <Compile Include="Controllers\Admin\Danh_gia_albumController.cs" />
+    <Compile Include="Controllers\Admin\Danh_gia_anhController.cs" />
+    <Compile Include="Controllers\Admin\DashboardController.cs" />
+    <Compile Include="Controllers\Admin\Giao_dichController.cs" />
+    <Compile Include="Controllers\Admin\Luot_thich_albumController.cs" />
+    <Compile Include="Controllers\Admin\Luot_thich_anhController.cs" />
+    <Compile Include="Controllers\Admin\Nguoi_dungController.cs" />
+    <Compile Include="Controllers\Admin\PhotosController.cs" />
     <Compile Include="Controllers\ExploreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ShopItemController.cs" />
     <Compile Include="Controllers\SignInController.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
+    <Compile Include="Controllers\Admin\TablesController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\SignInModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\admin\assets\demo\chart-area-demo.js" />
+    <Content Include="assets\admin\assets\demo\chart-bar-demo.js" />
+    <Content Include="assets\admin\assets\demo\chart-pie-demo.js" />
+    <Content Include="assets\admin\assets\demo\datatables-demo.js" />
+    <Content Include="assets\admin\assets\img\error-404-monochrome.svg" />
+    <Content Include="assets\admin\css\styles.css" />
+    <Content Include="assets\admin\js\datatables-simple-demo.js" />
+    <Content Include="assets\admin\js\scripts.js" />
     <Content Include="assets\css\slides.css" />
     <Content Include="assets\css\slides.min.css" />
     <Content Include="assets\css\style.css" />
@@ -441,11 +472,58 @@
     <Content Include="Views\Shared\_LogoNavBar.cshtml" />
     <Content Include="Views\UserProfile\Index.cshtml" />
     <Content Include="Views\Shared\_BlackTextNavBar.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Tables\Index.cshtml" />
+    <Content Include="Views\Nguoi_dung\Create.cshtml" />
+    <Content Include="Views\Nguoi_dung\Delete.cshtml" />
+    <Content Include="Views\Nguoi_dung\Details.cshtml" />
+    <Content Include="Views\Nguoi_dung\Edit.cshtml" />
+    <Content Include="Views\Nguoi_dung\Index.cshtml" />
+    <Content Include="Views\Albums\Create.cshtml" />
+    <Content Include="Views\Albums\Delete.cshtml" />
+    <Content Include="Views\Albums\Details.cshtml" />
+    <Content Include="Views\Albums\Edit.cshtml" />
+    <Content Include="Views\Albums\Index.cshtml" />
+    <Content Include="Views\Photos\Create.cshtml" />
+    <Content Include="Views\Photos\Delete.cshtml" />
+    <Content Include="Views\Photos\Details.cshtml" />
+    <Content Include="Views\Photos\Edit.cshtml" />
+    <Content Include="Views\Photos\Index.cshtml" />
+    <Content Include="Views\Danh_gia_album\Create.cshtml" />
+    <Content Include="Views\Danh_gia_album\Delete.cshtml" />
+    <Content Include="Views\Danh_gia_album\Details.cshtml" />
+    <Content Include="Views\Danh_gia_album\Edit.cshtml" />
+    <Content Include="Views\Danh_gia_album\Index.cshtml" />
+    <Content Include="Views\Danh_gia_anh\Create.cshtml" />
+    <Content Include="Views\Danh_gia_anh\Delete.cshtml" />
+    <Content Include="Views\Danh_gia_anh\Details.cshtml" />
+    <Content Include="Views\Danh_gia_anh\Edit.cshtml" />
+    <Content Include="Views\Danh_gia_anh\Index.cshtml" />
+    <Content Include="Views\Giao_dich\Create.cshtml" />
+    <Content Include="Views\Giao_dich\Delete.cshtml" />
+    <Content Include="Views\Giao_dich\Details.cshtml" />
+    <Content Include="Views\Giao_dich\Edit.cshtml" />
+    <Content Include="Views\Giao_dich\Index.cshtml" />
+    <Content Include="Views\Luot_thich_album\Create.cshtml" />
+    <Content Include="Views\Luot_thich_album\Delete.cshtml" />
+    <Content Include="Views\Luot_thich_album\Details.cshtml" />
+    <Content Include="Views\Luot_thich_album\Edit.cshtml" />
+    <Content Include="Views\Luot_thich_album\Index.cshtml" />
+    <Content Include="Views\Luot_thich_anh\Create.cshtml" />
+    <Content Include="Views\Luot_thich_anh\Delete.cshtml" />
+    <Content Include="Views\Luot_thich_anh\Details.cshtml" />
+    <Content Include="Views\Luot_thich_anh\Edit.cshtml" />
+    <Content Include="Views\Luot_thich_anh\Index.cshtml" />
+    <Content Include="Views\Anh_yeu_thich\Create.cshtml" />
+    <Content Include="Views\Anh_yeu_thich\Delete.cshtml" />
+    <Content Include="Views\Anh_yeu_thich\Details.cshtml" />
+    <Content Include="Views\Anh_yeu_thich\Edit.cshtml" />
+    <Content Include="Views\Anh_yeu_thich\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="assets\shop item\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -473,6 +551,12 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{d44a73fd-c2e2-4a9d-b414-a1f6dbcd49ec}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -507,7 +591,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

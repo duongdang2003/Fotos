@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Models.Framework.Nguoi_dung>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Users</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Dashboard")">Dashboard</a></li>
+            <li class="breadcrumb-item active">Tables</li>
+            <li class="breadcrumb-item active">Users</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Users
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Salt</th>
+                            <th>Full name</th>
+                            <th>Phone number</th>
+                            <th>Start date</th>
+                            <th data-sortable="false"></th>
+                            <th data-sortable="false"></th>
+                            <th data-sortable="false"></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Salt</th>
+                            <th>Full name</th>
+                            <th>Phone number</th>
+                            <th>Start date</th>
+                            <th data-sortable="false"></th>
+                            <th data-sortable="false"></th>
+                            <th data-sortable="false"></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.ten_nguoi_dung)</td>
+                                <td>@Html.DisplayFor(modelItem => item.email)</td>
+                                <td>@Html.DisplayFor(modelItem => item.mat_khau_hashed)</td>
+                                <td>@Html.DisplayFor(modelItem => item.salt)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ten_day_du)</td>
+                                <td>@Html.DisplayFor(modelItem => item.so_dien_thoai)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ngay_dang_ky)</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", new { id = item.id_nguoi_dung })" class="edit-link">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Details", new { id = item.id_nguoi_dung })" class="edit-link">
+                                        <i class="fa fa-circle-info"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Delete", new { id = item.id_nguoi_dung })" class="edit-link">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <a href="@Url.Action("Create", "Nguoi_dung")" class="edit-link" style="text-decoration: none;">
+            <i class="fa fa-circle-plus"></i> Create new user
+        </a>
+    </div>
+</main>
+
+
+
+
+

@@ -1,0 +1,12 @@
+D:\Code & Study materials\CONG NGHE .NET\Fotos\Models\bin\Debug\Models.dll.config
+D:\Code & Study materials\CONG NGHE .NET\Fotos\Models\bin\Debug\Models.dll
+D:\Code & Study materials\CONG NGHE .NET\Fotos\Models\bin\Debug\Models.pdb
+D:\Code & Study materials\CONG NGHE .NET\Fotos\Models\bin\Debug\EntityFramework.dll
+D:\Code & Study materials\CONG NGHE .NET\Fotos\Models\bin\Debug\EntityFramework.SqlServer.dll
+D:\Code & Study materials\CONG NGHE .NET\Fotos\Models\bin\Debug\EntityFramework.xml
+D:\Code & Study materials\CONG NGHE .NET\Fotos\Models\bin\Debug\EntityFramework.SqlServer.xml
+D:\Code & Study materials\CONG NGHE .NET\Fotos\Models\obj\Debug\Models.csproj.AssemblyReference.cache
+D:\Code & Study materials\CONG NGHE .NET\Fotos\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
+D:\Code & Study materials\CONG NGHE .NET\Fotos\Models\obj\Debug\Models.csproj.Up2Date
+D:\Code & Study materials\CONG NGHE .NET\Fotos\Models\obj\Debug\Models.dll
+D:\Code & Study materials\CONG NGHE .NET\Fotos\Models\obj\Debug\Models.pdb

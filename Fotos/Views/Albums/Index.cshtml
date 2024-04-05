@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Models.Framework.Album>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Albums</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Dashboard")">Dashboard</a></li>
+            <li class="breadcrumb-item active">Tables</li>
+            <li class="breadcrumb-item active">Albums</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Albums
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Number of pictures</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Creation date</th>
+                            <th>Number of comments</th>
+                            <th>Number of likes</th>
+                            <th data-sortable="false"></th>
+                            <th data-sortable="false"></th>
+                            <th data-sortable="false"></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Username</th>
+                            <th>Number of pictures</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Creation date</th>
+                            <th>Number of comments</th>
+                            <th>Number of likes</th>
+                            <th data-sortable="false"></th>
+                            <th data-sortable="false"></th>
+                            <th data-sortable="false"></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Nguoi_dung.ten_nguoi_dung)</td>
+                                <td>@Html.DisplayFor(modelItem => item.so_luong_anh)</td>
+                                <td>@Html.DisplayFor(modelItem => item.tieu_de_album)</td>
+                                <td>@Html.DisplayFor(modelItem => item.mo_ta_album)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ngay_tao_album)</td>
+                                <td>@Html.DisplayFor(modelItem => item.so_luot_danh_gia)</td>
+                                <td>@Html.DisplayFor(modelItem => item.so_luot_thich)</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", new { id = item.id_album })" class="edit-link">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Details", new { id = item.id_album })" class="edit-link">
+                                        <i class="fa fa-circle-info"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Delete", new { id = item.id_album })" class="edit-link">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <a href="@Url.Action("Create", "Albums")" class="edit-link" style="text-decoration: none;">
+            <i class="fa fa-circle-plus"></i> Create new album
+        </a>
+    </div>
+</main>
+

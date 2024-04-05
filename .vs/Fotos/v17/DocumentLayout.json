@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Code \u0026 Study materials\\CONG NGHE .NET\\Fotos\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{75CB32BB-C0A6-44C8-8848-3CF03B7FF9E5}|Fotos\\Fotos.csproj|d:\\code \u0026 study materials\\cong nghe .net\\fotos\\fotos\\views\\anh_yeu_thich\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{75CB32BB-C0A6-44C8-8848-3CF03B7FF9E5}|Fotos\\Fotos.csproj|solutionrelative:fotos\\views\\anh_yeu_thich\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75CB32BB-C0A6-44C8-8848-3CF03B7FF9E5}|Fotos\\Fotos.csproj|D:\\Code \u0026 Study materials\\CONG NGHE .NET\\Fotos\\fotos\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{75CB32BB-C0A6-44C8-8848-3CF03B7FF9E5}|Fotos\\Fotos.csproj|solutionrelative:fotos\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75CB32BB-C0A6-44C8-8848-3CF03B7FF9E5}|Fotos\\Fotos.csproj|d:\\code \u0026 study materials\\cong nghe .net\\fotos\\fotos\\views\\luot_thich_anh\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{75CB32BB-C0A6-44C8-8848-3CF03B7FF9E5}|Fotos\\Fotos.csproj|solutionrelative:fotos\\views\\luot_thich_anh\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Code \u0026 Study materials\\CONG NGHE .NET\\Fotos\\Fotos\\Views\\Anh_yeu_thich\\Index.cshtml",
+              "RelativeDocumentMoniker": "Fotos\\Views\\Anh_yeu_thich\\Index.cshtml",
+              "ToolTip": "D:\\Code \u0026 Study materials\\CONG NGHE .NET\\Fotos\\Fotos\\Views\\Anh_yeu_thich\\Index.cshtml",
+              "RelativeToolTip": "Fotos\\Views\\Anh_yeu_thich\\Index.cshtml",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAUwBoAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-05T02:46:49.725Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Code \u0026 Study materials\\CONG NGHE .NET\\Fotos\\Fotos\\Views\\Luot_thich_anh\\Index.cshtml",
+              "RelativeDocumentMoniker": "Fotos\\Views\\Luot_thich_anh\\Index.cshtml",
+              "ToolTip": "D:\\Code \u0026 Study materials\\CONG NGHE .NET\\Fotos\\Fotos\\Views\\Luot_thich_anh\\Index.cshtml",
+              "RelativeToolTip": "Fotos\\Views\\Luot_thich_anh\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-05T02:41:29.872Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_LayoutAdmin.cshtml",
+              "DocumentMoniker": "D:\\Code \u0026 Study materials\\CONG NGHE .NET\\Fotos\\Fotos\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "RelativeDocumentMoniker": "Fotos\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "ToolTip": "D:\\Code \u0026 Study materials\\CONG NGHE .NET\\Fotos\\Fotos\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "RelativeToolTip": "Fotos\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "ViewState": "AQIAACoAAAAAAAAAAAAUwEAAAABxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-04T01:39:32.38Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
