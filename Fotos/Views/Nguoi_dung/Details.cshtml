@@ -5,71 +5,80 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<main>
+    <div class="container-fluid px-4">
+        <h2>Details</h2>
 
-<div>
-    <h4>Nguoi_dung</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ten_nguoi_dung)
-        </dt>
+        <div>
+            <h4>User</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Username
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ten_nguoi_dung)
-        </dd>
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.ten_nguoi_dung)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
+                <dt>
+                    Email
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.email)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.mat_khau_hashed)
-        </dt>
+                <dt>
+                    Password
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.mat_khau_hashed)
-        </dd>
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.mat_khau_hashed)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.salt)
-        </dt>
+                <dt>
+                    Salt
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.salt)
-        </dd>
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.salt)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ten_day_du)
-        </dt>
+                <dt>
+                    Full name
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ten_day_du)
-        </dd>
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.ten_day_du)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.so_dien_thoai)
-        </dt>
+                <dt>
+                    Phone number
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.so_dien_thoai)
-        </dd>
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.so_dien_thoai)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ngay_dang_ky)
-        </dt>
+                <dt>
+                    Start date
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ngay_dang_ky)
-        </dd>
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.ngay_dang_ky)
+                </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_nguoi_dung }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </dl>
+        </div>
+        <p>
+            <a href="@Url.Action("Index", "Nguoi_dung")" class="edit-link mt-4" style="text-decoration: none;">
+                <i class="fa-solid fa-chevron-left"></i> Back to List
+            </a>|
+            @Html.ActionLink("Edit", "Edit", new { id = Model.id_nguoi_dung }, new {style = "text-decoration: none;" })
+        </p>
+
+    </div>
+</main>
+
+

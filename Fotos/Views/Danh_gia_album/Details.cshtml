@@ -5,47 +5,56 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<main>
+    <div class="container-fluid px-4">
+        <h2>Details</h2>
 
-<div>
-    <h4>Danh_gia_album</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Album.tieu_de_album)
-        </dt>
+        <div>
+            <h4>Album comment</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Title
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Album.tieu_de_album)
-        </dd>
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.Album.tieu_de_album)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nguoi_dung.ten_nguoi_dung)
-        </dt>
+                <dt>
+                    Username
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nguoi_dung.ten_nguoi_dung)
-        </dd>
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.Nguoi_dung.ten_nguoi_dung)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.binh_luan)
-        </dt>
+                <dt>
+                    Comment
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.binh_luan)
-        </dd>
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.binh_luan)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ngay_binh_luan)
-        </dt>
+                <dt>
+                    Comment date
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ngay_binh_luan)
-        </dd>
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.ngay_binh_luan)
+                </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_danh_gia }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </dl>
+        </div>
+
+        <p>
+            <a href="@Url.Action("Index", "Danh_gia_album")" class="edit-link mt-4" style="text-decoration: none;">
+                <i class="fa-solid fa-chevron-left"></i> Back to List
+            </a>|
+            @Html.ActionLink("Edit", "Edit", new { id = Model.id_danh_gia }, new { style = "text-decoration: none;" })
+        </p>
+
+    </div>
+</main>
+

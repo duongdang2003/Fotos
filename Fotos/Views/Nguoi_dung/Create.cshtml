@@ -5,80 +5,98 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Create</h2>
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Nguoi_dung</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.ten_nguoi_dung, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ten_nguoi_dung, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ten_nguoi_dung, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<main>
+    <div class="container-fluid px-4">
+        <h2>Create</h2>
+        <div class="form-horizontal">
+            <h4>User</h4>
+            <hr />
+            <div class="row w-75">
+                <div class="col-6">
+                    <div class="form-group ">
+                        @Html.LabelFor(model => model.ten_nguoi_dung, "Username", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ten_nguoi_dung, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ten_nguoi_dung, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.mat_khau_hashed, "Password", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.mat_khau_hashed, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.mat_khau_hashed, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.mat_khau_hashed, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.mat_khau_hashed, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.mat_khau_hashed, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.email, "Email", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.salt, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.salt, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.salt, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ten_day_du, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ten_day_du, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ten_day_du, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.so_dien_thoai, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.so_dien_thoai, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.so_dien_thoai, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.salt, "Salt", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.salt, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.salt, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ngay_dang_ky, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ngay_dang_ky, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ngay_dang_ky, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.ten_day_du, "Full name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ten_day_du, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ten_day_du, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="form-group">
+                @Html.LabelFor(model => model.so_dien_thoai, "Phone number", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.so_dien_thoai, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.so_dien_thoai, "", new { @class = "text-danger" })
+                </div>
             </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ngay_dang_ky, "Start date", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ngay_dang_ky, new { htmlAttributes = new { @class = "form-control", placeholder = "Month/Day/Year" } })
+                    @Html.ValidationMessageFor(model => model.ngay_dang_ky, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group mt-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="@Url.Action("Index", "Nguoi_dung")" class="edit-link mt-4" style="text-decoration: none;">
+                            <i class="fa-solid fa-chevron-left"></i> Back to List
+                        </a>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <input type="submit" value="Create" class="btn btn-outline-primary" />
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
+</main>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

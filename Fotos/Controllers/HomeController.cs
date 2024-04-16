@@ -9,8 +9,17 @@ namespace Fotos.Controllers
 {
     public class HomeController : Controller
     {
+        private bool IsUserLoggedIn = false;
         public ActionResult Index()
         {
+            /*if (IsUserLoggedIn)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "SignIn");
+            }*/
             return View();
         }
 

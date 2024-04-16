@@ -5,55 +5,63 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<main>
+    <div class="container-fluid px-4">
+        <h2>Details</h2>
 
-<div>
-    <h4>Giao_dich</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Album.tieu_de_album)
-        </dt>
+        <div>
+            <h4>Transaction</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Title
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Album.tieu_de_album)
-        </dd>
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.Album.tieu_de_album)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nguoi_dung.ten_nguoi_dung)
-        </dt>
+                <dt>
+                    Seller
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nguoi_dung.ten_nguoi_dung)
-        </dd>
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.Nguoi_dung.ten_nguoi_dung)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nguoi_dung1.ten_nguoi_dung)
-        </dt>
+                <dt>
+                    Customer
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nguoi_dung1.ten_nguoi_dung)
-        </dd>
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.Nguoi_dung1.ten_nguoi_dung)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.gia_tien)
-        </dt>
+                <dt>
+                    Price
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.gia_tien)
-        </dd>
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.gia_tien)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ngay_giao_dich)
-        </dt>
+                <dt>
+                    Transaction date
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ngay_giao_dich)
-        </dd>
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.ngay_giao_dich)
+                </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_giao_dich }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </dl>
+        </div>
+        <p>
+            <a href="@Url.Action("Index", "Nguoi_dung")" class="edit-link mt-4" style="text-decoration: none;">
+                <i class="fa-solid fa-chevron-left"></i> Back to List
+            </a>|
+            @Html.ActionLink("Edit", "Edit", new { id = Model.id_giao_dich }, new { style = "text-decoration: none;" })
+        </p>
+
+    </div>
+</main>
+
