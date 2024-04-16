@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "User Profile";
+    Layout = "~/Views/Shared/_BlackTextNavBar.cshtml";
+}
+
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/user profile/css/style.css"/>
+    <link rel="stylesheet" href="~/Content/bootstrap.css"/>
+</head>
+<body>
+    <div class="container" style="margin-top: 60px">
+        <div class="card overflow-hidden">
+            <div class="card-body p-0">
+                <div>
+                    @*<img src="~/assets/img/avatar.jpg" alt="" class="img-fluid">*@
+                    <div style="background: url('/assets/img/background .jpg'); height: 250px; background-repeat: no-repeat; background-size: cover; background-position: center"></div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-lg-4 order-lg-1 order-2">
+                        <div class="d-flex align-items-center justify-content-around m-4">
+                            <div class="text-center">
+                                <i class="fa fa-file fs-6 d-block mb-2"></i>
+                                <h4 class="mb-0 fw-semibold lh-1">12</h4>
+                                <p class="mb-0 fs-4">Posts</p>
+                            </div>
+                            <div class="text-center">
+                                <i class="fa fa-user fs-6 d-block mb-2"></i>
+                                <h4 class="mb-0 fw-semibold lh-1">3,586</h4>
+                                <p class="mb-0 fs-4">Followers</p>
+                            </div>
+                            <div class="text-center">
+                                <i class="fa fa-check fs-6 d-block mb-2"></i>
+                                <h4 class="mb-0 fw-semibold lh-1">2,659</h4>
+                                <p class="mb-0 fs-4">Following</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mt-n3 order-lg-2 order-1">
+                        <div class="mt-n5">
+                            <div class="d-flex align-items-center justify-content-center mb-2">
+                                <div class="linear-gradient d-flex align-items-center justify-content-center rounded-circle" style="width: 110px; height: 110px;" ;="">
+                                    <div class="border border-4 border-white d-flex align-items-center justify-content-center rounded-circle overflow-hidden" style="width: 100px; height: 100px;" ;="">
+                                        <img src="~/assets/img/avatar.jpg" alt="" class="w-100 h-100">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <h5 class="fs-5 mb-0 fw-semibold">Mathew Anderson</h5>
+                                <p class="mb-0 fs-4">Designer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 order-last">
+                        <ul class="list-unstyled d-flex align-items-center justify-content-center justify-content-lg-start my-3 gap-3">
+                            <li class="position-relative">
+                                <a class="text-white d-flex align-items-center justify-content-center bg-primary p-2 fs-4 rounded-circle" href="javascript:void(0)" width="30" height="30">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li class="position-relative">
+                                <a class="text-white bg-secondary d-flex align-items-center justify-content-center p-2 fs-4 rounded-circle " href="javascript:void(0)">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li class="position-relative">
+                                <a class="text-white bg-secondary d-flex align-items-center justify-content-center p-2 fs-4 rounded-circle " href="javascript:void(0)">
+                                    <i class="fa fa-dribbble"></i>
+                                </a>
+                            </li>
+                            <li class="position-relative">
+                                <a class="text-white bg-danger d-flex align-items-center justify-content-center p-2 fs-4 rounded-circle " href="javascript:void(0)">
+                                    <i class="fa fa-youtube"></i>
+                                </a>
+                            </li>
+                          
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="tab-content" id="pills-tabContent">
+
+            <div class="tab-pane fade show active" id="pills-friends" role="tabpanel" aria-labelledby="pills-friends-tab" tabindex="0">
+                <div class="d-sm-flex align-items-center justify-content-between mt-3 mb-4">
+                    <h3 class="mb-3 mb-sm-0 fw-semibold d-flex align-items-center">Your post</h3>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card" style="width: 25rem; height: 25rem">
+                            <div class="postImg" style="background: url(/assets/img/gallery-74-2.jpg)"></div>
+                            <div class="card-body">
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card" style="width: 25rem; height: 25rem">
+                            <div class="postImg" style="background: url(/assets/img/background/img-75.jpg)"></div>
+                            <div class="card-body">
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+                    </div> <div class="col-sm-6 col-lg-4">
+                        <div class="card" style="width: 25rem; height: 25rem">
+                            <div class="postImg" style="background: url(/assets/img/background/img-90.jpg)"></div>
+                            <div class="card-body">
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+                    </div> <div class="col-sm-6 col-lg-4">
+                        <div class="card" style="width: 25rem; height: 25rem">
+                            <div class="postImg" style="background: url(/assets/img/gallery-90-4.jpg)"></div>
+                            <div class="card-body">
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+

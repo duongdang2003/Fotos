@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Models.Framework.Giao_dich>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Transactions</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Dashboard")">Dashboard</a></li>
+            <li class="breadcrumb-item active">Tables</li>
+            <li class="breadcrumb-item active">Transactions</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Transactions
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Album title</th>
+                            <th>Seller</th>
+                            <th>Customer</th>
+                            <th>Price</th>
+                            <th>Transaction date</th>
+                            <th data-sortable="false"></th>
+                            <th data-sortable="false"></th>
+                            <th data-sortable="false"></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Album title</th>
+                            <th>Seller</th>
+                            <th>Customer</th>
+                            <th>Price</th>
+                            <th>Transaction date</th>
+                            <th data-sortable="false"></th>
+                            <th data-sortable="false"></th>
+                            <th data-sortable="false"></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Album.tieu_de_album)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Nguoi_dung.ten_nguoi_dung)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Nguoi_dung1.ten_nguoi_dung)</td>
+                                <td>@Html.DisplayFor(modelItem => item.gia_tien)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ngay_giao_dich)</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", new { id = item.id_giao_dich })" class="edit-link">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Details", new { id = item.id_giao_dich })" class="edit-link">
+                                        <i class="fa fa-circle-info"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Delete", new { id = item.id_giao_dich })" class="edit-link">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <a href="@Url.Action("Create", "Giao_dich")" class="edit-link" style="text-decoration: none;">
+            <i class="fa fa-circle-plus"></i> Create new transaction
+        </a>
+    </div>
+</main>
