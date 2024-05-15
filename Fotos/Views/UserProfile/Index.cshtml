@@ -6,8 +6,9 @@
 
 <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="~/assets/user profile/css/style.css"/>
-    <link rel="stylesheet" href="~/Content/bootstrap.css"/>
+    <link rel="stylesheet" href="~/assets/user profile/css/style.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <div class="container" style="margin-top: 60px">
@@ -74,13 +75,17 @@
                                     <i class="fa fa-youtube"></i>
                                 </a>
                             </li>
-                          
+
                         </ul>
                     </div>
                 </div>
-                
+
             </div>
         </div>
+        <button class="middle none center mr-4 rounded-lg bg-blue-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                data-ripple-light="true">
+            Create your album
+        </button>
         <div class="tab-content" id="pills-tabContent">
 
             <div class="tab-pane fade show active" id="pills-friends" role="tabpanel" aria-labelledby="pills-friends-tab" tabindex="0">
@@ -121,6 +126,47 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+    @*album form*@ 
+    <div class="w-screen h-screen bg-gray-900 fixed top-0 z-50" id="modal">
+        <div class="min-h-screen flex items-center justify-center w-full dark:bg-gray-950">
+            <div class="bg-white dark:bg-gray-900 shadow-md rounded-lg px-8 py-6 max-w-md">
+                <h1 class="text-2xl font-bold text-center mb-4 dark:text-gray-200">Create album</h1>
+                <form action="#" class="w-96">
+                    <div class="mb-4">
+                        <label for="albumName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Album name</label>
+                        <input type="text" id="albumName" class="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your album name" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Album name</label>
+                        <input type="text" id="description" class="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your album description" required>
+                    </div>
+                    @{
+                        var toggle = false;
+                        if (toggle)
+                        {
+                            <div class="mb-4">
+                                <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Album name</label>
+                                <input type="text" id="description" class="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your album description" required>
+                            </div>
+                        } else { 
+                            <div class="mb-4">
+                                <h1 class="px-3 py-1 shadow-lg shadow-gray-500/50 bg-black text-white rounded-lg text-[15px] cursor-pointer active:scale-[.97] w-fit">
+                                    + Add image
+                                </h1>
+                            </div>
+                        }
+                    }
+                    <div class="mb-4">
+                        <h1 class="px-3 py-1 shadow-lg shadow-gray-500/50 bg-black text-white rounded-lg text-[15px] cursor-pointer active:scale-[.97] w-fit">
+                            + Add image
+                        </h1>
+                    </div>
+                    <button onclick="alert(" hello")" type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Login</button>
+                </form>
+                
+            </div>
         </div>
     </div>
 </body>

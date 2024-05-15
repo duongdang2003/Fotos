@@ -9,9 +9,15 @@ namespace Fotos.Controllers
     public class UserProfileController : Controller
     {
         // GET: UserProfile
+        private int imageCount = 0;
         public ActionResult Index()
         {
             return View();
+        }
+        public ActionResult Increase()
+        {
+            imageCount++;
+            return null;
         }
     }
 }

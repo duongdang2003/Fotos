@@ -60,7 +60,14 @@ CREATE TABLE dbo.Photos(
 	CONSTRAINT FK_id_photo_nguoi_dung FOREIGN KEY (id_nguoi_dung) REFERENCES dbo.Nguoi_dung (id_nguoi_dung)
 )
 GO
+CREATE TABLE dbo.Albumn_Photos(
+	id_album INT NOT NULL,
+	id_photo INT NOT NULL,
+	FOREIGN KEY (id_album) REFERENCES dbo.Albums (id_album),
+	FOREIGN KEY (id_photo) REFERENCES dbo.Photos (id_photo)
+)
 
+GO
 CREATE TABLE dbo.Danh_gia_album(
 	id_danh_gia INT IDENTITY(1, 1) NOT NULL,
 	id_nguoi_dung INT NOT NULL,
