@@ -27,23 +27,23 @@ namespace Fotos.Controllers
             {
                 if (model.username.Equals("Admin"))
                 {
-                    HttpCookie userCookie = new HttpCookie("UserCredentials");
+                    /*HttpCookie userCookie = new HttpCookie("UserCredentials");
                     userCookie["Username"] = model.username;
                     userCookie["Password"] = model.hashed_pass;
 
                     Response.Cookies.Add(userCookie);
-
+*/
                     SessionHelper.SetSession(new UserSession() { username = model.username });
                     return RedirectToAction("Index", "Dashboard");
                 }
                 else
                 {
-                    HttpCookie userCookie = new HttpCookie("UserCredentials");
+                    /*HttpCookie userCookie = new HttpCookie("UserCredentials");
                     userCookie["Username"] = model.username;
                     userCookie["Password"] = model.hashed_pass;
 
                     Response.Cookies.Add(userCookie);
-
+*/
                     SessionHelper.SetSession(new UserSession() { username = model.username });
                     return RedirectToAction("Index", "Home");
                 }
@@ -51,8 +51,9 @@ namespace Fotos.Controllers
             else
             {
                 ModelState.AddModelError("", "Invalid username or password.");
+                return View(model);
             }
-            return View(model);
+            
         }
 
     }

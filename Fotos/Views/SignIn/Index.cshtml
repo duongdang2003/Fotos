@@ -21,7 +21,7 @@
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
-                
+
                 <div class="field">
                     <span class="fa fa-user"></span>
                     @Html.TextBoxFor(model => model.username, new { @placeholder = "Username" })

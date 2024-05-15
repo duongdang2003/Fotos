@@ -1,13 +1,37 @@
-﻿
+﻿@model IEnumerable<Models.Framework.Nguoi_dung>
+
 @{
     ViewBag.Title = "User Profile";
     Layout = "~/Views/Shared/_BlackTextNavBar.cshtml";
 }
 
+@{
+    var user_id = 0;
+    var title = "";
+    var description = "";
+
+    foreach (var id_user in Model)
+    {
+        if (id_user.ten_nguoi_dung.Equals(ViewBag.Username))
+        {
+            user_id = id_user.id_nguoi_dung;
+        }
+    }
+
+    foreach (var id in ViewBag.AlbumList)
+    {
+        if (id.id_nguoi_dung == user_id)
+        {
+            title = id.tieu_de_album;
+            description = id.mo_ta_album;
+        }
+    }
+}
+
 <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="~/assets/user profile/css/style.css"/>
-    <link rel="stylesheet" href="~/Content/bootstrap.css"/>
+    <link rel="stylesheet" href="~/assets/user profile/css/style.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
 </head>
 <body>
     <div class="container" style="margin-top: 60px">
@@ -47,7 +71,8 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <h5 class="fs-5 mb-0 fw-semibold">Mathew Anderson</h5>
+                                <h5 class="fs-5 mb-0 fw-semibold">@ViewBag.Username</h5>
+                                <h5 class="fs-5 mb-0 fw-semibold">@title</h5>
                                 <p class="mb-0 fs-4">Designer</p>
                             </div>
                         </div>
@@ -74,11 +99,11 @@
                                     <i class="fa fa-youtube"></i>
                                 </a>
                             </li>
-                          
+
                         </ul>
                     </div>
                 </div>
-                
+
             </div>
         </div>
         <div class="tab-content" id="pills-tabContent">
@@ -92,7 +117,7 @@
                         <div class="card" style="width: 25rem; height: 25rem">
                             <div class="postImg" style="background: url(/assets/img/gallery-74-2.jpg)"></div>
                             <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <p class="card-text">@description</p>
                             </div>
                         </div>
                     </div>
