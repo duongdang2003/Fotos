@@ -163,6 +163,7 @@ D:\Code & Study materials\CONG NGHE .NET\Fotos\Fotos\bin\Models.pdb
 D:\Code & Study materials\CONG NGHE .NET\Fotos\Fotos\bin\Models.dll.config
 D:\Code & Study materials\CONG NGHE .NET\Fotos\Fotos\bin\EntityFramework.xml
 D:\Code & Study materials\CONG NGHE .NET\Fotos\Fotos\bin\EntityFramework.SqlServer.xml
+<<<<<<< HEAD
 C:\Users\Admin\OneDrive\Máy tính\Fotos-main\Fotos-main\Fotos\bin\Fotos.dll.config
 C:\Users\Admin\OneDrive\Máy tính\Fotos-main\Fotos-main\Fotos\bin\Fotos.dll
 C:\Users\Admin\OneDrive\Máy tính\Fotos-main\Fotos-main\Fotos\bin\Fotos.pdb
@@ -249,3 +250,5 @@ C:\Users\Admin\OneDrive\Máy tính\Fotos-main\Fotos-main\Fotos\obj\Debug\Fotos.c
 C:\Users\Admin\OneDrive\Máy tính\Fotos-main\Fotos-main\Fotos\obj\Debug\Fotos.csproj.Up2Date
 C:\Users\Admin\OneDrive\Máy tính\Fotos-main\Fotos-main\Fotos\obj\Debug\Fotos.dll
 C:\Users\Admin\OneDrive\Máy tính\Fotos-main\Fotos-main\Fotos\obj\Debug\Fotos.pdb
+=======
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60

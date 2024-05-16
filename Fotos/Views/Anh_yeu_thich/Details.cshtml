@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<<<<<<< HEAD
 <h2>Details</h2>
 
 <div>
@@ -41,3 +42,49 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.id_anh_yeu_thich }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+=======
+<main>
+    <div class="container-fluid px-4">
+        <h2>Details</h2>
+
+        <div>
+            <h4>Saved photo</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Username
+                </dt>
+
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.Nguoi_dung.ten_nguoi_dung)
+                </dd>
+
+                <dt>
+                    Title
+                </dt>
+
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.Photo.tieu_de_anh)
+                </dd>
+
+                <dt>
+                     Saved date
+                </dt>
+
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.ngay_yeu_thich)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            <a href="@Url.Action("Index", "Anh_yeu_thich")" class="edit-link mt-4" style="text-decoration: none;">
+                <i class="fa-solid fa-chevron-left"></i> Back to List
+            </a>|
+            @Html.ActionLink("Edit", "Edit", new { id = Model.id_anh_yeu_thich }, new { style = "text-decoration: none;" })
+        </p>
+
+    </div>
+</main>
+
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60

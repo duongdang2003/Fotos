@@ -252,6 +252,10 @@
     <Content Include="assets\shop\fonts\icomoon\style.css" />
     <Content Include="assets\shop\fonts\index.html" />
     <Content Include="assets\shop\images\about_pic.jpg" />
+<<<<<<< HEAD
+=======
+    <Content Include="assets\shop\images\batman.jpg" />
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60
     <Content Include="assets\shop\images\dots.png" />
     <Content Include="assets\shop\images\gal_1.jpg" />
     <Content Include="assets\shop\images\gal_2.jpg" />

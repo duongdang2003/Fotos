@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+@model IEnumerable<Models.Framework.Album>
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60
 
 @{
     Layout = null;
@@ -53,7 +57,11 @@
     <nav class="site-nav dark mb-5 site-navbar-target">
         <div class="container">
             <div class="site-navigation">
+<<<<<<< HEAD
                 <a href="index.html" class="logo m-0">Fotos Shop<span class="text-primary">.</span></a>
+=======
+                <a href="@Url.Action("Index", "Home")" class="logo m-0">Fotos<span class="text-primary">.</span></a>
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60
 
                 <ul class="js-clone-nav d-none d-lg-inline-none site-menu float-right site-nav-wrap">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
@@ -96,11 +104,22 @@
             <div id="portfolio-single-holder"></div>
 
             <div class="portfolio-wrapper">
+<<<<<<< HEAD
                 @*@Html.ActionLink("Click me ", "Index", "ShopItem")*@
                 <div id="posts" class="row">
 
                     <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
                         <a href="" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="1">
+=======
+                <div id="posts" class="row">
+
+                    <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
+                        @{
+                            var name = Model.ElementAt(0).tieu_de_album;
+                            var des = Model.ElementAt(0).mo_ta_album;
+                        }
+                        <a href="@Url.Action("Index", "ShopItem", new { productName = name, description = des })" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="1">
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60
                             <div class="overlay">
 
                                 <span class="wrap-icon icon-link2"></span>

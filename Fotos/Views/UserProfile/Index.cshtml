@@ -1,13 +1,48 @@
+<<<<<<< HEAD
 ﻿@{
+=======
+﻿@model IEnumerable<Models.Framework.Nguoi_dung>
+
+@{
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60
     ViewBag.Title = "User Profile";
     Layout = "~/Views/Shared/_BlackTextNavBar.cshtml";
 }
 
+<<<<<<< HEAD
+=======
+@{
+    var user_id = 0;
+    var title = "";
+    var description = "";
+
+    foreach (var id_user in Model)
+    {
+        if (id_user.ten_nguoi_dung.Equals(ViewBag.Username))
+        {
+            user_id = id_user.id_nguoi_dung;
+        }
+    }
+
+    foreach (var id in ViewBag.AlbumList)
+    {
+        if (id.id_nguoi_dung == user_id)
+        {
+            title = id.tieu_de_album;
+            description = id.mo_ta_album;
+        }
+    }
+}
+
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60
 <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/assets/user profile/css/style.css" />
     <link rel="stylesheet" href="~/Content/bootstrap.css" />
+<<<<<<< HEAD
     <script src="https://cdn.tailwindcss.com"></script>
+=======
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60
 </head>
 <body>
     <div class="container" style="margin-top: 60px">
@@ -47,7 +82,12 @@
                                 </div>
                             </div>
                             <div class="text-center">
+<<<<<<< HEAD
                                 <h5 class="fs-5 mb-0 fw-semibold">Mathew Anderson</h5>
+=======
+                                <h5 class="fs-5 mb-0 fw-semibold">@ViewBag.Username</h5>
+                                <h5 class="fs-5 mb-0 fw-semibold">@title</h5>
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60
                                 <p class="mb-0 fs-4">Designer</p>
                             </div>
                         </div>
@@ -81,10 +121,13 @@
 
             </div>
         </div>
+<<<<<<< HEAD
         <button class="middle none center mr-4 rounded-lg bg-blue-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 data-ripple-light="true">
             Create album
         </button>
+=======
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60
         <div class="tab-content" id="pills-tabContent">
 
             <div class="tab-pane fade show active" id="pills-friends" role="tabpanel" aria-labelledby="pills-friends-tab" tabindex="0">
@@ -96,7 +139,11 @@
                         <div class="card" style="width: 25rem; height: 25rem">
                             <div class="postImg" style="background: url(/assets/img/gallery-74-2.jpg)"></div>
                             <div class="card-body">
+<<<<<<< HEAD
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+=======
+                                <p class="card-text">@description</p>
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60
                             </div>
                         </div>
                     </div>
@@ -127,6 +174,7 @@
 
         </div>
     </div>
+<<<<<<< HEAD
     <div>
         <div class="min-h-screen flex items-center justify-center w-full dark:bg-gray-950 fixed top-0">
             <div class="bg-white dark:bg-gray-900 shadow-md rounded-lg px-8 py-6 w-2/5">
@@ -189,3 +237,7 @@
         });
     </script>
 </body>
+=======
+</body>
+
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60

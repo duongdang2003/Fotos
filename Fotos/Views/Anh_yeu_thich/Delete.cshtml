@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<<<<<<< HEAD
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
@@ -47,3 +48,62 @@
         </div>
     }
 </div>
+=======
+<main>
+    <div class="container-fluid px-4">
+        <h2>Delete</h2>
+
+        <h3>Are you sure you want to delete this?</h3>
+        <div>
+            <h4>Saved Photo</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Username
+                </dt>
+
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.Nguoi_dung.ten_nguoi_dung)
+                </dd>
+
+                <dt>
+                    Title
+                </dt>
+
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.Photo.tieu_de_anh)
+                </dd>
+
+                <dt>
+                    Saved date
+                </dt>
+
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.ngay_yeu_thich)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group mt-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="@Url.Action("Index", "Nguoi_dung")" class="edit-link mt-4" style="text-decoration: none;">
+                                <i class="fa-solid fa-chevron-left"></i> Back to List
+                            </a>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <input type="submit" value="Delete" class="btn btn-danger" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</main>
+
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60

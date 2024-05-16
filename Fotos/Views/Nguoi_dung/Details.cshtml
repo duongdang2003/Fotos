@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<<<<<<< HEAD
 <h2>Details</h2>
 
 <div>
@@ -73,3 +74,82 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.id_nguoi_dung }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+=======
+<main>
+    <div class="container-fluid px-4">
+        <h2>Details</h2>
+
+        <div>
+            <h4>User</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Username
+                </dt>
+
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.ten_nguoi_dung)
+                </dd>
+
+                <dt>
+                    Email
+                </dt>
+
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.email)
+                </dd>
+
+                <dt>
+                    Password
+                </dt>
+
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.mat_khau_hashed)
+                </dd>
+
+                <dt>
+                    Salt
+                </dt>
+
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.salt)
+                </dd>
+
+                <dt>
+                    Full name
+                </dt>
+
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.ten_day_du)
+                </dd>
+
+                <dt>
+                    Phone number
+                </dt>
+
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.so_dien_thoai)
+                </dd>
+
+                <dt>
+                    Start date
+                </dt>
+
+                <dd class="border border-primary p-2 rounded">
+                    @Html.DisplayFor(model => model.ngay_dang_ky)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            <a href="@Url.Action("Index", "Nguoi_dung")" class="edit-link mt-4" style="text-decoration: none;">
+                <i class="fa-solid fa-chevron-left"></i> Back to List
+            </a>|
+            @Html.ActionLink("Edit", "Edit", new { id = Model.id_nguoi_dung }, new {style = "text-decoration: none;" })
+        </p>
+
+    </div>
+</main>
+
+
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60

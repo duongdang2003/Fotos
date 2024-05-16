@@ -10,6 +10,7 @@ D:\Code & Study materials\CONG NGHE .NET\Fotos\Models\obj\Debug\Models.csproj.Co
 D:\Code & Study materials\CONG NGHE .NET\Fotos\Models\obj\Debug\Models.csproj.Up2Date
 D:\Code & Study materials\CONG NGHE .NET\Fotos\Models\obj\Debug\Models.dll
 D:\Code & Study materials\CONG NGHE .NET\Fotos\Models\obj\Debug\Models.pdb
+<<<<<<< HEAD
 C:\Users\Admin\OneDrive\Máy tính\Fotos-main\Fotos-main\Models\bin\Debug\Models.dll.config
 C:\Users\Admin\OneDrive\Máy tính\Fotos-main\Fotos-main\Models\bin\Debug\Models.dll
 C:\Users\Admin\OneDrive\Máy tính\Fotos-main\Fotos-main\Models\bin\Debug\Models.pdb
@@ -22,3 +23,5 @@ C:\Users\Admin\OneDrive\Máy tính\Fotos-main\Fotos-main\Models\obj\Debug\Models
 C:\Users\Admin\OneDrive\Máy tính\Fotos-main\Fotos-main\Models\obj\Debug\Models.csproj.Up2Date
 C:\Users\Admin\OneDrive\Máy tính\Fotos-main\Fotos-main\Models\obj\Debug\Models.dll
 C:\Users\Admin\OneDrive\Máy tính\Fotos-main\Fotos-main\Models\obj\Debug\Models.pdb
+=======
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60

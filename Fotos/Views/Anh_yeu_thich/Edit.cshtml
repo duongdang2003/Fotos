@@ -5,11 +5,16 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<<<<<<< HEAD
 <h2>Edit</h2>
+=======
+
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+<<<<<<< HEAD
     
     <div class="form-horizontal">
         <h4>Anh_yeu_thich</h4>
@@ -52,3 +57,56 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+=======
+
+    <main>
+        <div class="container-fluid px-4">
+            <h2>Edit</h2>
+            <div class="form-horizontal">
+                <h4>Saved photo</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.id_anh_yeu_thich)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.id_nguoi_dung, "Username", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("id_nguoi_dung", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.id_nguoi_dung, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.id_anh, "Photo", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("id_anh", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.id_anh, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ngay_yeu_thich, "Saved date", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ngay_yeu_thich, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ngay_yeu_thich, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group mt-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="@Url.Action("Index", "Anh_yeu_thich")" class="edit-link mt-4" style="text-decoration: none;">
+                                <i class="fa-solid fa-chevron-left"></i> Back to List
+                            </a>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <input type="submit" value="Save" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+}
+
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60

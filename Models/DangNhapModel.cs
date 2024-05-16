@@ -16,9 +16,12 @@ namespace Models
         }
         public bool Login(String username, String password)
         {
+<<<<<<< HEAD
             
 
 
+=======
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60
             object[] sqlParams =
             {
                 new SqlParameter("@username", username),

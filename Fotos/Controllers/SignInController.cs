@@ -27,17 +27,48 @@ namespace Fotos.Controllers
             {
                 if (model.username.Equals("Admin"))
                 {
+<<<<<<< HEAD
                     SessionHelper.SetSession(new UserSession() { username = model.username });
                     return RedirectToAction("Index", "Dashboard");
                 }
                 SessionHelper.SetSession(new UserSession() { username = model.username });
                 return RedirectToAction("Index", "Home");   
+=======
+                    /*HttpCookie userCookie = new HttpCookie("UserCredentials");
+                    userCookie["Username"] = model.username;
+                    userCookie["Password"] = model.hashed_pass;
+
+                    Response.Cookies.Add(userCookie);
+*/
+                    SessionHelper.SetSession(new UserSession() { username = model.username });
+                    return RedirectToAction("Index", "Dashboard");
+                }
+                else
+                {
+                    /*HttpCookie userCookie = new HttpCookie("UserCredentials");
+                    userCookie["Username"] = model.username;
+                    userCookie["Password"] = model.hashed_pass;
+
+                    Response.Cookies.Add(userCookie);
+*/
+                    SessionHelper.SetSession(new UserSession() { username = model.username });
+                    return RedirectToAction("Index", "Home");
+                }
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60
             }
             else
             {
                 ModelState.AddModelError("", "Invalid username or password.");
+<<<<<<< HEAD
             }
             return View(model);
         }
+=======
+                return View(model);
+            }
+            
+        }
+
+>>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60
     }
 }
