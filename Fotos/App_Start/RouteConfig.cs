@@ -13,15 +13,9 @@ namespace Fotos
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-<<<<<<< HEAD
-            routes.MapRoute(
-                name: "Admin",
-                url: "admin",
-=======
 /*            routes.MapRoute(
                 name: "SignIn",
                 url: "SignIn",
->>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60
                 defaults: new { controller = "SignIn", action = "Index", id = UrlParameter.Optional }
             );
 
@@ -29,15 +23,12 @@ namespace Fotos
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-<<<<<<< HEAD
-=======
             );*/
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "SignIn", action = "Index", id = UrlParameter.Optional }
->>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60
             );
         }
     }
