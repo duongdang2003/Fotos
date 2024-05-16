@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "User Profile";
     Layout = "~/Views/Shared/_BlackTextNavBar.cshtml";
 }
@@ -84,7 +83,7 @@
         </div>
         <button class="middle none center mr-4 rounded-lg bg-blue-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 data-ripple-light="true">
-            Create your album
+            Create album
         </button>
         <div class="tab-content" id="pills-tabContent">
 
@@ -128,46 +127,65 @@
 
         </div>
     </div>
-    @*album form*@ 
-    <div class="w-screen h-screen bg-gray-900 fixed top-0 z-50" id="modal">
-        <div class="min-h-screen flex items-center justify-center w-full dark:bg-gray-950">
-            <div class="bg-white dark:bg-gray-900 shadow-md rounded-lg px-8 py-6 max-w-md">
-                <h1 class="text-2xl font-bold text-center mb-4 dark:text-gray-200">Create album</h1>
-                <form action="#" class="w-96">
+    <div>
+        <div class="min-h-screen flex items-center justify-center w-full dark:bg-gray-950 fixed top-0">
+            <div class="bg-white dark:bg-gray-900 shadow-md rounded-lg px-8 py-6 w-2/5">
+                <h1 class="text-2xl font-bold text-center mb-4">CREATE ALBUM</h1>
+                <form action="#">
                     <div class="mb-4">
-                        <label for="albumName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Album name</label>
-                        <input type="text" id="albumName" class="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your album name" required>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Album name</label>
+                        <input type="text" id="email" class="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your album name" required>
                     </div>
                     <div class="mb-4">
-                        <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Album name</label>
-                        <input type="text" id="description" class="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your album description" required>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                        <input type="text" id="email" class="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your album description" required>
                     </div>
-                    @{
-                        var toggle = false;
-                        if (toggle)
-                        {
-                            <div class="mb-4">
-                                <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Album name</label>
-                                <input type="text" id="description" class="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your album description" required>
+                    <div>
+                        <div>
+                            <hr style="height:2px;border-width:0;color:gray;background-color:black" />
+                            <div class="flex justify-end ">
+                                <span class="cursor-pointer font-bold text-2xl mr px-3 hover:text-red-600">X</span>
                             </div>
-                        } else { 
-                            <div class="mb-4">
-                                <h1 class="px-3 py-1 shadow-lg shadow-gray-500/50 bg-black text-white rounded-lg text-[15px] cursor-pointer active:scale-[.97] w-fit">
-                                    + Add image
-                                </h1>
-                            </div>
-                        }
-                    }
-                    <div class="mb-4">
-                        <h1 class="px-3 py-1 shadow-lg shadow-gray-500/50 bg-black text-white rounded-lg text-[15px] cursor-pointer active:scale-[.97] w-fit">
-                            + Add image
-                        </h1>
+
+                        </div>
                     </div>
-                    <button onclick="alert(" hello")" type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Login</button>
+                    <label for="file" class="px-4 py-2 shadow-lg shadow-gray-500/50 bg-black text-white rounded-lg text-[15px] cursor-pointer active:scale-[.97] w-fit">Add image</label>
+                    <input type="file" name="file" id="file" accept="image/*" class="absolute z-0 invisible">
+                    <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Login</button>
                 </form>
-                
             </div>
+            <form id="uploadForm" action="/Home/Upload" method="post" enctype="multipart/form-data">
+                
+                <button type="submit">Upload</button>
+            </form>
+
+            <div id="message"></div>
         </div>
     </div>
-</body>
+    <script>
+        document.getElementById("uploadForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent the default form submission
 
+            var formData = new FormData();
+            var fileInput = document.getElementById('file');
+            var file = fileInput.files[0];
+
+            formData.append('file', file);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://localhost:44363/Home/Upload', true); // Adjust the URL to match your HomeController endpoint
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        document.getElementById('message').innerText = xhr.responseText;
+                    } else {
+                        document.getElementById('message').innerText = 'Error: ' + xhr.responseText;
+                    }
+                }
+            };
+
+            xhr.send(formData);
+        });
+    </script>
+</body>
