@@ -9,10 +9,6 @@ namespace Fotos.Controllers
 {
     public class HomeController : Controller
     {
-<<<<<<< HEAD
-        public ActionResult Index()
-        {
-=======
         private bool IsUserLoggedIn = false;
         public ActionResult Index()
         {
@@ -24,7 +20,6 @@ namespace Fotos.Controllers
             {
                 return RedirectToAction("Index", "SignIn");
             }*/
->>>>>>> 850bf8397263b2c5f80af6f77015b321ff303f60
             return View();
         }
 
