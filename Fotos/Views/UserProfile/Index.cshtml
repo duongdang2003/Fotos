@@ -72,7 +72,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <h5 class="fs-5 mb-0 fw-semibold">@ViewBag.Username</h5>
+                                <h5 class="fs-5 mb-0 fw-semibold" id="userName">@ViewBag.Username</h5>
                                 <h5 class="fs-5 mb-0 fw-semibold">@title</h5>
                                 <p class="mb-0 fs-4">Designer</p>
                             </div>
@@ -160,11 +160,11 @@
                 <form action="#">
                     <div class="mb-4">
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Album name</label>
-                        <input type="text" id="email" class="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your album name" required>
+                        <input type="text" id="albumName" class="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your album name" required>
                     </div>
                     <div class="mb-4">
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                        <input type="text" id="email" class="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your album description" required>
+                        <input type="text" id="albumDescription" class="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your album description" required>
     </div>
                     <div>
                         <div>
@@ -172,31 +172,53 @@
                             <div class="flex justify-end ">
                                 <span class="cursor-pointer font-bold text-2xl mr px-3 hover:text-red-600">X</span>
                             </div>
-
+                                
                         </div>
                     </div>
                     <label for="file" class="px-4 py-2 shadow-lg shadow-gray-500/50 bg-black text-white rounded-lg text-[15px] cursor-pointer active:scale-[.97] w-fit">Add image</label>
                     <input type="file" name="file" id="file" accept="image/*" class="absolute z-0 invisible">
-                    <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Login</button>
+                    <button id="createAlbumn" type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create albumn</button>
                 </form>
             </div>
             <form id="uploadForm" action="/Home/Upload" method="post" enctype="multipart/form-data">
-                
-                <button type="submit">Upload</button>
+
+                <button type="submit" class="px-3 text-white">Upload</button>
+                <br />
+                <button type="button" class="px-3 text-white" id="display">Display image</button>
+                <br />
+                <button type="button" class="px-3 text-white" id="testBtn">Test</button>
             </form>
 
-            <div id="message"></div>
+            <div id="message" class="px-3 text-white"></div>
         </div>
     </div>
+    <div id="imageGallery"></div>
     <script>
+        const imagePathList = [];
+        var userName = "";
+        var uploadedImage = []
+
+        userName = document.getElementById("userName").textContent;
+
+        document.getElementById('file').addEventListener('change', function (e) {
+            if (e.target.files.length > 0) {
+                uploadedImage.push(...e.target.files); // Spread operator to push multiple files
+                console.log(uploadedImage);
+            }
+        });
+
         document.getElementById("uploadForm").addEventListener("submit", function (event) {
             event.preventDefault(); // Prevent the default form submission
-
             var formData = new FormData();
             var fileInput = document.getElementById('file');
-            var file = fileInput.files[0];
+            var userName = document.getElementById("userName").textContent;
+            var userID = "";
 
-            formData.append('file', file);
+            formData.append('files', uploadedImage);
+            formData.append('albumInfo', JSON.stringify({
+                userName: userName,
+            }));
+
 
             var xhr = new XMLHttpRequest();
             xhr.open('POST', 'https://localhost:44363/Home/Upload', true); // Adjust the URL to match your HomeController endpoint
@@ -205,14 +227,158 @@
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
                         document.getElementById('message').innerText = xhr.responseText;
+                        imagePathList.push(xhr.responseText);
+                        console.log(imagePathList);
+                    } else {
+                        document.getElementById('message').innerText = 'Error: ' + xhr.responseText;
+                    }
+                }
+            };
+            xhr.send(formData);
+        });
+
+
+        document.getElementById("createAlbumn").addEventListener("click", function (event) {
+            event.preventDefault();
+
+            // save images to server
+            var formData = new FormData();
+            var fileInput = document.getElementById('file');
+            var userName = document.getElementById("userName").textContent;
+            var albumName = document.getElementById("albumName").value;
+            var description = document.getElementById("albumDescription").value;
+
+
+
+            albumName ? albumName : albumName = "No name";
+            description ? description : description = "No description";
+            // Append each file to the form data
+            for (var i = 0; i < uploadedImage.length; i++) {
+                formData.append('files', uploadedImage[i]);
+            }
+            formData.append('jsonData', JSON.stringify({ userName: userName, albumName: albumName }));
+            var xhrUpload = new XMLHttpRequest();
+            xhrUpload.open('POST', 'https://localhost:44363/Home/Upload', true); // Adjust the URL to match your HomeController endpoint
+
+            xhrUpload.onreadystatechange = function () {
+                if (xhrUpload.readyState === XMLHttpRequest.DONE) {
+                    if (xhrUpload.status === 200) {
+                        console.log(xhrUpload.responseText);
+                        var uploadedFilePaths = JSON.parse(xhrUpload.responseText); // Assuming the server responds with a JSON array of file paths
+                        document.getElementById('message').innerText = 'Files uploaded successfully.';
+                        console.log(uploadedFilePaths);
+
+                        // save image info to database
+                        var xhrSave = new XMLHttpRequest();
+                        xhrSave.open("POST", "https://localhost:44374/Photos/CreatePhoto", true);
+                        xhrSave.setRequestHeader("Content-Type", "application/json");
+
+                        xhrSave.onreadystatechange = function () {
+                            if (xhrSave.readyState == XMLHttpRequest.DONE) {
+                                if (xhrSave.status === 200) {
+                                    console.log(xhrSave.responseText);
+                                    uploadedImage = [];
+                                    uploadedFilePaths = [];
+                                    document.getElementById("albumName").value = "";
+                                    document.getElementById("albumDescription").value = "";
+                                } else {
+                                    console.log("\nError: " + xhrSave.status + " - " + xhrSave.statusText);
+                                }
+                            }
+                        };
+                        console.log(uploadedFilePaths); 
+                        var data = uploadedFilePaths.savedFilePaths.map((item) => ({
+                            "url_anh": item,
+                            "tieu_de_anh": "this is title",
+                            "mo_ta_anh": "this is description"
+                        }));
+
+                        console.log(data);
+                        xhrSave.send(JSON.stringify(data));
+                    } else {
+                        document.getElementById('message').innerText = 'Error: ' + xhrUpload.responseText;
+                    }
+                }
+            };
+            xhrUpload.send(formData);
+        });
+
+
+
+        document.getElementById("display").addEventListener("click", function (event) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://localhost:44363/Home/GetImagePaths', true); // Adjust the URL to match your HomeController endpoint
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        imagePaths = JSON.parse(xhr.responseText);
+                        var gallery = document.getElementById('imageGallery');
+                        gallery.innerHTML = '';
+                        imagePaths.forEach(function (path) {
+                            var img = document.createElement('img');
+                            console.log(path)
+                            img.src = "https://localhost:44363/" + path;
+                            img.alt = 'Image';
+                            img.width = 100; // Set desired width
+                            gallery.appendChild(img);
+                        });
+                        console.log(xhr.responseText);
                     } else {
                         document.getElementById('message').innerText = 'Error: ' + xhr.responseText;
                     }
                 }
             };
 
+            xhr.send();
+        })
+
+        document.getElementById("testBtn").addEventListener("click", function () {
+            console.log('test clicked');
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://localhost:44374/Albums/CreateAlbum', true);
+            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+            var albumName = document.getElementById("albumName").value;
+            var description = document.getElementById("albumDescription").value;
+
+            var formData = new FormData();
+            formData.append("album", {
+                "tieu_de_album": albumName,
+                "mo_ta_album": description,
+                "id_nguoi_dung": userID
+            });
+            var data = {
+                "tieu_de_album": albumName,
+                "mo_ta_album": description,
+                "id_nguoi_dung": userID
+            }
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    if (xhr.status == 200) {
+                        console.log(JSON.parse(xhr.responseText));
+                    }
+                }
+            }
+
+            xhr.send(JSON.stringify(data));
+        })
+
+        window.onload = function () {
+            // get user infor 
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://localhost:44374/Nguoi_dung/FindByUsername', true);
+            var formData = new FormData();
+            formData.append("username", userName);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    if (xhr.status == 200) {
+                        userInfo = JSON.parse(xhr.responseText);
+                        userID = userInfo.data.id_nguoi_dung;
+                    }
+                }
+            }
             xhr.send(formData);
-        });
-    </script>
+        }
+   </script>   
 </body>
 

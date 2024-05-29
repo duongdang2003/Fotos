@@ -128,5 +128,35 @@ namespace Fotos.Controllers.Admin
             }
             base.Dispose(disposing);
         }
+        [HttpPost]
+        public ActionResult CreateAlbum(Album album)
+        {
+            if (album == null)
+            {
+                return Content("No album");
+            }
+            System.Diagnostics.Debug.WriteLine(album);
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    album.tieu_de_album = album.tieu_de_album;
+                    album.mo_ta_album = album.mo_ta_album;
+                    album.so_luot_thich = 0;
+                    album.so_luot_danh_gia = 0;
+                    album.ngay_tao_album = DateTime.Now;
+                    album.id_nguoi_dung = album.id_nguoi_dung;
+                    db.Albums.Add(album);
+                    db.SaveChanges();
+                    return Content("Save new albumn success");
+                }
+                catch (Exception ex)
+                {
+                    var innerExceptionMessage = ex.InnerException?.InnerException?.Message ?? ex.Message;
+                    return Content(innerExceptionMessage);
+                }
+            }
+            return Content("Cannot create");
+        }
     }
 }

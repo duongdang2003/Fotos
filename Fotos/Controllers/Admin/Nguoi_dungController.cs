@@ -123,5 +123,23 @@ namespace Fotos.Controllers.Admin
             }
             base.Dispose(disposing);
         }
+
+        [HttpPost]
+        public ActionResult FindByUsername(string username)
+        {
+            if (string.IsNullOrEmpty(username))
+            {
+                return Json(new { success = false, message = "Username require" }, JsonRequestBehavior.AllowGet);
+            }
+
+            Nguoi_dung nguoi_dung = db.Nguoi_dung.FirstOrDefault(u => u.ten_nguoi_dung == username);
+            if (nguoi_dung == null)
+            {
+                return Json(new { success = false, message = "User not found" }, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(new { success = true, data = nguoi_dung }, JsonRequestBehavior.AllowGet);
+        }
     }
+
 }
