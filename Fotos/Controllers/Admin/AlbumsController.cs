@@ -148,7 +148,7 @@ namespace Fotos.Controllers.Admin
                     album.id_nguoi_dung = album.id_nguoi_dung;
                     db.Albums.Add(album);
                     db.SaveChanges();
-                    return Content("Save new albumn success");
+                    return Content(album.id_album.ToString());
                 }
                 catch (Exception ex)
                 {

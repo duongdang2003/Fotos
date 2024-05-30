@@ -146,7 +146,7 @@ namespace Fotos.Controllers.Admin
                     foreach (Photo photo in photos)
                     {
                         photo.url_anh = photo.url_anh;
-                        photo.id_nguoi_dung = 1;
+                        photo.id_nguoi_dung = photo.id_nguoi_dung;
                         photo.tieu_de_anh = photo.tieu_de_anh ?? string.Empty;
                         photo.mo_ta_anh = photo.mo_ta_anh ?? string.Empty;
                         photo.ngay_tai_anh_len = DateTime.Now;

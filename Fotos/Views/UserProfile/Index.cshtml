@@ -268,33 +268,55 @@
                         document.getElementById('message').innerText = 'Files uploaded successfully.';
                         console.log(uploadedFilePaths);
 
-                        // save image info to database
-                        var xhrSave = new XMLHttpRequest();
-                        xhrSave.open("POST", "https://localhost:44374/Photos/CreatePhoto", true);
-                        xhrSave.setRequestHeader("Content-Type", "application/json");
+                        // save album to db
+                        var xhrCreateAlbum = new XMLHttpRequest();
+                        xhrCreateAlbum.open('POST', 'https://localhost:44374/Albums/CreateAlbum', true);
+                        xhrCreateAlbum.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                        var albumName = document.getElementById("albumName").value;
+                        var description = document.getElementById("albumDescription").value;
+                        var data = {
+                            "tieu_de_album": albumName,
+                            "mo_ta_album": description,
+                            "id_nguoi_dung": userID
+                        }
+                        xhrCreateAlbum.onreadystatechange = function () {
+                            if (xhrCreateAlbum.readyState == XMLHttpRequest.DONE) {
+                                if (xhrCreateAlbum.status == 200) {
+                                    console.log(JSON.parse(xhrCreateAlbum.responseText));
+                                    // save image info to database
+                                    var xhrSave = new XMLHttpRequest();
+                                    xhrSave.open("POST", "https://localhost:44374/Photos/CreatePhoto", true);
+                                    xhrSave.setRequestHeader("Content-Type", "application/json");
 
-                        xhrSave.onreadystatechange = function () {
-                            if (xhrSave.readyState == XMLHttpRequest.DONE) {
-                                if (xhrSave.status === 200) {
-                                    console.log(xhrSave.responseText);
-                                    uploadedImage = [];
-                                    uploadedFilePaths = [];
-                                    document.getElementById("albumName").value = "";
-                                    document.getElementById("albumDescription").value = "";
-                                } else {
-                                    console.log("\nError: " + xhrSave.status + " - " + xhrSave.statusText);
+                                    xhrSave.onreadystatechange = function () {
+                                        if (xhrSave.readyState == XMLHttpRequest.DONE) {
+                                            if (xhrSave.status === 200) {
+                                                console.log(xhrSave.responseText);
+                                                uploadedImage = [];
+                                                uploadedFilePaths = [];
+                                                document.getElementById("albumName").value = "";
+                                                document.getElementById("albumDescription").value = "";
+                                            } else {
+                                                console.log("\nError: " + xhrSave.status + " - " + xhrSave.statusText);
+                                            }
+                                        }
+                                    };
+                                    console.log(uploadedFilePaths);
+                                    var data = uploadedFilePaths.savedFilePaths.map((item) => ({
+                                        "url_anh": item,
+                                        "tieu_de_anh": "this is title",
+                                        "mo_ta_anh": "this is description",
+                                        "id_album": parseInt(xhrCreateAlbum.responseText),
+                                        "id_nguoi_dung": userID
+                                    }));
+                                    xhrSave.send(JSON.stringify(data));
                                 }
                             }
-                        };
-                        console.log(uploadedFilePaths); 
-                        var data = uploadedFilePaths.savedFilePaths.map((item) => ({
-                            "url_anh": item,
-                            "tieu_de_anh": "this is title",
-                            "mo_ta_anh": "this is description"
-                        }));
+                        }
+                        xhrCreateAlbum.send(JSON.stringify(data));
 
-                        console.log(data);
-                        xhrSave.send(JSON.stringify(data));
+
+                        
                     } else {
                         document.getElementById('message').innerText = 'Error: ' + xhrUpload.responseText;
                     }
@@ -307,23 +329,18 @@
 
         document.getElementById("display").addEventListener("click", function (event) {
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'https://localhost:44363/Home/GetImagePaths', true); // Adjust the URL to match your HomeController endpoint
+            xhr.open('GET', 'https://localhost:44363/Home/GetAllImages', true);
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
-                        imagePaths = JSON.parse(xhr.responseText);
-                        var gallery = document.getElementById('imageGallery');
-                        gallery.innerHTML = '';
-                        imagePaths.forEach(function (path) {
-                            var img = document.createElement('img');
-                            console.log(path)
-                            img.src = "https://localhost:44363/" + path;
-                            img.alt = 'Image';
-                            img.width = 100; // Set desired width
-                            gallery.appendChild(img);
-                        });
-                        console.log(xhr.responseText);
+                        var response = JSON.parse(xhr.responseText);
+                        if (response.success) {
+                            console.log(response.users);
+                            // You can now use response.users to display the images
+                        } else {
+                            document.getElementById('message').innerText = 'Error: ' + response.message;
+                        }
                     } else {
                         document.getElementById('message').innerText = 'Error: ' + xhr.responseText;
                     }
@@ -335,9 +352,9 @@
 
         document.getElementById("testBtn").addEventListener("click", function () {
             console.log('test clicked');
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'https://localhost:44374/Albums/CreateAlbum', true);
-            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+            var xhrCreateAlbum = new XMLHttpRequest();
+            xhrCreateAlbum.open('POST', 'https://localhost:44374/Albums/CreateAlbum', true);
+            xhrCreateAlbum.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
             var albumName = document.getElementById("albumName").value;
             var description = document.getElementById("albumDescription").value;
 
@@ -352,15 +369,15 @@
                 "mo_ta_album": description,
                 "id_nguoi_dung": userID
             }
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == XMLHttpRequest.DONE) {
-                    if (xhr.status == 200) {
-                        console.log(JSON.parse(xhr.responseText));
+            xhrCreateAlbum.onreadystatechange = function () {
+                if (xhrCreateAlbum.readyState == XMLHttpRequest.DONE) {
+                    if (xhrCreateAlbum.status == 200) {
+                        console.log(JSON.parse(xhrCreateAlbum.responseText));
                     }
                 }
             }
 
-            xhr.send(JSON.stringify(data));
+            xhrCreateAlbum.send(JSON.stringify(data));
         })
 
         window.onload = function () {
@@ -378,6 +395,76 @@
                 }
             }
             xhr.send(formData);
+        }
+
+        // usage function
+        function GetImageWithAlbumName(userName, albumName) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://localhost:44363/Home/GetImageWithAlbumName', true); // Adjust the URL to match your HomeController endpoint
+            var formData = new FormData();
+            formData.append("userName", userName);
+            formData.append("albumName", "loz");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        imagePaths = JSON.parse(xhr.responseText);
+                        console.log(imagePaths);
+                    } else {
+                        document.getElementById('message').innerText = 'Error: ' + xhr.responseText;
+                    }
+                }
+            };
+
+            xhr.send(formData);
+        }
+
+        function GetAlbumWithUsername(userName) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://localhost:44363/Home/GetAlbumWithUserName', true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            var params = "username=" + encodeURIComponent(userName);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        if (response.success) {
+                            console.log(response.albums);
+                            // You can now use the response.albums to display the images
+                        } else {
+                            document.getElementById('message').innerText = 'Error: ' + response.message;
+                        }
+                    } else {
+                        document.getElementById('message').innerText = 'Error: ' + xhr.responseText;
+                    }
+                }
+            };
+
+            xhr.send(params);
+        }
+        function getAllImages() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://localhost:44363/Home/GetAllImages', true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        if (response.success) {
+                            console.log(response.users);
+                            // You can now use response.users to display the images
+                        } else {
+                            document.getElementById('message').innerText = 'Error: ' + response.message;
+                        }
+                    } else {
+                        document.getElementById('message').innerText = 'Error: ' + xhr.responseText;
+                    }
+                }
+            };
+
+            xhr.send();
         }
    </script>   
 </body>

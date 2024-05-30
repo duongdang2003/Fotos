@@ -25,10 +25,10 @@ namespace Models.Framework
         public int id_nguoi_dung { get; set; }
 
         [Required]
-        [StringLength(255)]
+        [MaxLength]
         public string tieu_de_album { get; set; }
 
-        [StringLength(255)]
+        [MaxLength]
         public string mo_ta_album { get; set; }
 
         public DateTime? ngay_tao_album { get; set; }

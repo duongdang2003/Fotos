@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Models.Framework;
+using Newtonsoft.Json;
 
 namespace Fotos.Controllers.Admin
 {
@@ -129,7 +130,7 @@ namespace Fotos.Controllers.Admin
         {
             if (string.IsNullOrEmpty(username))
             {
-                return Json(new { success = false, message = "Username require" }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = false, message = "Username required" }, JsonRequestBehavior.AllowGet);
             }
 
             Nguoi_dung nguoi_dung = db.Nguoi_dung.FirstOrDefault(u => u.ten_nguoi_dung == username);
@@ -138,8 +139,14 @@ namespace Fotos.Controllers.Admin
                 return Json(new { success = false, message = "User not found" }, JsonRequestBehavior.AllowGet);
             }
 
-            return Json(new { success = true, data = nguoi_dung }, JsonRequestBehavior.AllowGet);
+            var settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+            return Content(JsonConvert.SerializeObject(new { success = true, data = nguoi_dung }, settings), "application/json");
         }
+
     }
 
 }
