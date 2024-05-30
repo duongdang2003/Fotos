@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<Models.Framework.Album>
+
 @{
     Layout = "../Shared/_Layout.cshtml";
     ViewBag.Title = "Explore";
@@ -19,6 +20,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
     <link rel="stylesheet" href="/assets/explore/css/style.css" />
 </head>
+
+<style>
+    .heart-button {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        font-size: 24px;
+        cursor: pointer;
+        color: #ccc;
+        transition: color 0.3s;
+    }
+
+    .heart-button.liked {
+            color: #e0245e;
+    }
+
+    .heart-button svg {
+            width: 1.5em;
+            height: 1.5em;
+    }
+</style>
+
 
 <body>
 
@@ -42,48 +65,29 @@
                         <div class="col-md-12 p-0">
                             <div class="swiper-container parallax-slider">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="img-container one">
-                                            <div class="slide-text opacity">
-                                                <a href="#0" class="project-link marine-project-link">
-                                                    MARINE
-                                                    <div class="view-project">CLICK TO VIEW PROJECT</div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="img-container two">
-                                            <div class="slide-text opacity">
-                                                <a href="#0" class="project-link forest-project-link">
-                                                    FOREST
-                                                    <div class="view-project">CLICK TO VIEW PROJECT</div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="img-container three">
-                                            <div class="slide-text opacity">
-                                                <a href="#0" class="project-link wildlife-project-link">
-                                                    wildlife
-                                                    <div class="view-project">CLICK TO VIEW PROJECT</div>
 
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="img-container four">
-                                            <div class="slide-text opacity">
-                                                <a href="#0" class="project-link city-project-link">
-                                                    CITY
-                                                    <div class="view-project">CLICK TO VIEW PROJECT</div>
+                                    @{
+                                        var albumItem = new Fotos.Models.AlbumItem[] {
+                                            new Fotos.Models.AlbumItem { Class = "one", LinkClass = "marine-project-link", Title = "MARINE" },
+                                            new Fotos.Models.AlbumItem { Class = "two", LinkClass = "forest-project-link", Title = "FOREST" },
+                                            new Fotos.Models.AlbumItem { Class = "three", LinkClass = "wildlife-project-link", Title = "WILDLIFE" },
+                                            new Fotos.Models.AlbumItem { Class = "four", LinkClass = "city-project-link", Title = "CITY" }
+                                        };
+                                    }
 
-                                                </a>
+                                    @foreach (var item in albumItem)
+                                    {
+                                        <div class="swiper-slide">
+                                            <div class="img-container @item.Class">
+                                                <div class="slide-text opacity">
+                                                    <a href="#0" class="project-link @item.LinkClass">
+                                                        @item.Title
+                                                        <div class="view-project">CLICK TO VIEW ALBUM</div>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    }
                                 </div>
 
                                 <!-- slider controls -->
@@ -215,13 +219,19 @@
                 <div class="project-name">
                     MARINE
                 </div>
-            
+
+                <div class="heart-button">
+                    <svg id="heartIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+                        <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21.4l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"></path>
+                    </svg>
+                </div>
+
             </div>
             <!-- MARINE PROJECT -->
             <!-- FOREST PROJECT -->
             <div class="project forest-project">
                 <div class="navigation navigation-project">
-                        
+
                     <div class="logo home-link about-opacity">
                         <a href="#"> HARY KEN</a>
                     </div>
@@ -254,6 +264,7 @@
                     </div>
 
                 </div>
+
                 <div class="controls">
                     <button id="forest-prev" class="hover"><img src="/assets/explore/images/prev.png" alt="prev" class="imgs"></button>
                     <button id="forest-next" class="hover"><img src="/assets/explore/images/next.png" alt="next" class="imgs"></button>
@@ -261,7 +272,7 @@
                 <div class="project-name">
                     FOREST
                 </div>
-                
+
             </div>
             <!-- FOREST PROJECT -->
             <!-- wildlife PROJECT -->
@@ -310,7 +321,7 @@
                 <div class="project-name">
                     wildlife
                 </div>
-                
+
             </div>
             <!-- wildlife PROJECT -->
             <!-- wildlife PROJECT -->
@@ -356,7 +367,7 @@
                 <div class="project-name">
                     CITY
                 </div>
-               
+
             </div>
             <!-- CITY PROJECT -->
             <!-- PROJECTS -->
@@ -416,129 +427,136 @@
     <script src="/assets/explore/js/pace.js"></script>
     <script src="/assets/explore/js/index.js"></script>
     <script>
-       $(function(){
-    //marine-slideshow
-    var slide_index = 1;
-    displaySlides(slide_index);
-    function nextSlide() {
-        displaySlides(slide_index++);
-    }
-    function prevslide() {
-      displaySlides(slide_index--);
-    }
-    function displaySlides() {
-        var i;
-        var slides = document.getElementsByClassName("slides");
-        if (slide_index > slides.length ) { slide_index = 1 }
-        if (slide_index < 1) { slide_index = slides.length }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.opacity = 0;
+        $(function () {
+            //marine-slideshow
+            var slide_index = 1;
+            displaySlides(slide_index);
+            function nextSlide() {
+                displaySlides(slide_index++);
+            }
+            function prevslide() {
+                displaySlides(slide_index--);
+            }
+            function displaySlides() {
+                var i;
+                var slides = document.getElementsByClassName("slides");
+                if (slide_index > slides.length) { slide_index = 1 }
+                if (slide_index < 1) { slide_index = slides.length }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.opacity = 0;
 
-        }
-        slides[slide_index - 1].style.opacity = 1;
+                }
+                slides[slide_index - 1].style.opacity = 1;
 
-      }
-      var next = document.getElementById('next');
-      next.addEventListener('click',nextSlide);
+            }
+            var next = document.getElementById('next');
+            next.addEventListener('click', nextSlide);
 
-      var prev = document.getElementById('prev');
-      prev.addEventListener('click',prevslide);
-  })
+            var prev = document.getElementById('prev');
+            prev.addEventListener('click', prevslide);
+        })
 
-  //forest slideshow
+        //forest slideshow
 
-  $(function(){
-    var slide_index = 1;
-    displaySlides(slide_index);
-    function nextSlide() {
-        displaySlides(slide_index++);
-    }
-    function prevslide() {
-      displaySlides(slide_index--);
-    }
-    function displaySlides() {
-        var i;
-        var slides = document.getElementsByClassName("forest-slides");
-        if (slide_index > slides.length ) { slide_index = 1 }
-        if (slide_index < 1) { slide_index = slides.length }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.opacity = 0;
+        $(function () {
+            var slide_index = 1;
+            displaySlides(slide_index);
+            function nextSlide() {
+                displaySlides(slide_index++);
+            }
+            function prevslide() {
+                displaySlides(slide_index--);
+            }
+            function displaySlides() {
+                var i;
+                var slides = document.getElementsByClassName("forest-slides");
+                if (slide_index > slides.length) { slide_index = 1 }
+                if (slide_index < 1) { slide_index = slides.length }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.opacity = 0;
 
-        }
-        slides[slide_index - 1].style.opacity = 1;
+                }
+                slides[slide_index - 1].style.opacity = 1;
 
-      }
-      var next = document.getElementById('forest-next');
-      next.addEventListener('click',nextSlide);
+            }
+            var next = document.getElementById('forest-next');
+            next.addEventListener('click', nextSlide);
 
-      var prev = document.getElementById('forest-prev');
-      prev.addEventListener('click',prevslide);
-  })
+            var prev = document.getElementById('forest-prev');
+            prev.addEventListener('click', prevslide);
+        })
 
-  //wildlife slideshow
+        //wildlife slideshow
 
-  $(function(){
-    var slide_index = 1;
-    displaySlides(slide_index);
-    function nextSlide() {
-        displaySlides(slide_index++);
-    }
-    function prevslide() {
-      displaySlides(slide_index--);
-    }
-    function displaySlides() {
-        var i;
-        var slides = document.getElementsByClassName("wildlife-slides");
-        if (slide_index > slides.length ) { slide_index = 1 }
-        if (slide_index < 1) { slide_index = slides.length }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.opacity = 0;
+        $(function () {
+            var slide_index = 1;
+            displaySlides(slide_index);
+            function nextSlide() {
+                displaySlides(slide_index++);
+            }
+            function prevslide() {
+                displaySlides(slide_index--);
+            }
+            function displaySlides() {
+                var i;
+                var slides = document.getElementsByClassName("wildlife-slides");
+                if (slide_index > slides.length) { slide_index = 1 }
+                if (slide_index < 1) { slide_index = slides.length }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.opacity = 0;
 
-        }
-        slides[slide_index - 1].style.opacity = 1;
+                }
+                slides[slide_index - 1].style.opacity = 1;
 
-      }
-      var next = document.getElementById('wildlife-next');
-      next.addEventListener('click',nextSlide);
+            }
+            var next = document.getElementById('wildlife-next');
+            next.addEventListener('click', nextSlide);
 
-      var prev = document.getElementById('wildlife-prev');
-      prev.addEventListener('click',prevslide);
-  })
-
-
-    //city slideshow
-
-    $(function(){
-      var slide_index = 1;
-      displaySlides(slide_index);
-      function nextSlide() {
-          displaySlides(slide_index++);
-      }
-      function prevslide() {
-        displaySlides(slide_index--);
-      }
-      function displaySlides() {
-          var i;
-          var slides = document.getElementsByClassName("city-slides");
-          if (slide_index > slides.length ) { slide_index = 1 }
-          if (slide_index < 1) { slide_index = slides.length }
-          for (i = 0; i < slides.length; i++) {
-              slides[i].style.opacity = 0;
-
-          }
-          slides[slide_index - 1].style.opacity = 1;
-
-        }
-        var next = document.getElementById('city-next');
-        next.addEventListener('click',nextSlide);
-
-        var prev = document.getElementById('city-prev');
-        prev.addEventListener('click',prevslide);
+            var prev = document.getElementById('wildlife-prev');
+            prev.addEventListener('click', prevslide);
+        })
 
 
-    })
+        //city slideshow
+
+        $(function () {
+            var slide_index = 1;
+            displaySlides(slide_index);
+            function nextSlide() {
+                displaySlides(slide_index++);
+            }
+            function prevslide() {
+                displaySlides(slide_index--);
+            }
+            function displaySlides() {
+                var i;
+                var slides = document.getElementsByClassName("city-slides");
+                if (slide_index > slides.length) { slide_index = 1 }
+                if (slide_index < 1) { slide_index = slides.length }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.opacity = 0;
+
+                }
+                slides[slide_index - 1].style.opacity = 1;
+
+            }
+            var next = document.getElementById('city-next');
+            next.addEventListener('click', nextSlide);
+
+            var prev = document.getElementById('city-prev');
+            prev.addEventListener('click', prevslide);
+
+
+        })
 
     </script>
+
+    <script>
+        document.querySelector('.heart-button').addEventListener('click', function () {
+            this.classList.toggle('liked');
+        });
+    </script>
+
 
 
 </body>
