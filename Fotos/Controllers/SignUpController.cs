@@ -30,7 +30,7 @@ namespace Fotos.Controllers
             {
                 db.Nguoi_dung.Add(nguoi_dung);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "SignIn");
             }
 
             return View(nguoi_dung);

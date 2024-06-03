@@ -256,3 +256,4 @@ SELECT * FROM dbo.Giao_dich
 SELECT * FROM dbo.Luot_thich_album
 SELECT * FROM dbo.Luot_thich_anh
 SELECT * FROM dbo.Anh_yeu_thich
+

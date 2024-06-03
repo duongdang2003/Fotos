@@ -51,6 +51,8 @@ namespace Fotos.Controllers.Admin
         {
             if (ModelState.IsValid)
             {
+                nguoi_dung.salt = "abc";
+                nguoi_dung.ngay_dang_ky = DateTime.Now;
                 db.Nguoi_dung.Add(nguoi_dung);
                 db.SaveChanges();
                 return RedirectToAction("Index");
