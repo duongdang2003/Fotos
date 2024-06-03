@@ -70,6 +70,8 @@ function CreateNewPostOfUser(albums) {
 function HandleModel() {
     console.log("Click");
 }
+console.log(document.getElementById("userName").textContent)
+
 GetAlbumWithUsername(document.getElementById("userName").textContent).then(albums => {
     console.log(albums)
     CreateNewPostOfUser(albums)
