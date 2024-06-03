@@ -109,7 +109,8 @@
         </div>
         <button class="middle none center mr-4 rounded-lg bg-blue-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 data-ripple-light="true"
-                data-dialog-target="animated-dialog">
+                data-dialog-target="animated-dialog"
+                >
             Create album
         </button>
         <div class="tab-content" id="pills-tabContent">
@@ -159,7 +160,7 @@
                         </div>
                         <label for="file" class="px-4 py-2 shadow-lg shadow-gray-500/50 bg-black text-white rounded-lg text-[15px] cursor-pointer active:scale-[.97] w-fit">Add image</label>
                         <input type="file" name="file" id="file" accept="image/*" class="absolute z-0 invisible">
-                        <button id="createAlbumn" type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create albumn</button>
+                        <button id="createAlbumn" type="button" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create albumn</button>
                     </form>
 
                 </div>
@@ -252,7 +253,7 @@
                     if (xhrUpload.status === 200) {
                         console.log(xhrUpload.responseText);
                         var uploadedFilePaths = JSON.parse(xhrUpload.responseText); // Assuming the server responds with a JSON array of file paths
-                        document.getElementById('message').innerText = 'Files uploaded successfully.';
+                        //document.getElementById('message').innerText = 'Files uploaded successfully.';
                         console.log(uploadedFilePaths);
 
                         // save album to db
@@ -305,7 +306,7 @@
 
 
                     } else {
-                        document.getElementById('message').innerText = 'Error: ' + xhrUpload.responseText;
+                        //document.getElementById('message').innerText = 'Error: ' + xhrUpload.responseText;
                     }
                 }
             };
@@ -357,19 +358,27 @@
         function GetAlbumWithUsername(userName) {
             return new Promise((resolve, reject) => {
                 var xhr = new XMLHttpRequest();
+                var url = 'your_api_endpoint_here'; // Replace with your actual API endpoint
+                var params = `username=${encodeURIComponent(userName)}`; // Add any other required parameters
+
+                xhr.open('GET', url + '?' + params, true); // 'GET' request with query parameters
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
                         if (xhr.status === 200) {
                             var response = JSON.parse(xhr.responseText);
                             if (response.success) {
                                 resolve(response.albums);
                             } else {
                                 reject('Error: ' + response.message);
+                            }
                         } else {
-                            reject('Error: ' + xhr.responseText);
+                            reject('Error: ' + xhr.statusText);
                         }
                     }
                 };
 
-                xhr.send(params);
+                xhr.send();
             });
         }
 
