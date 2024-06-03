@@ -1,0 +1,28 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/assets/css/style.css" />
+    @*@Styles.Render("~/Content/css")*@
+    @*@Scripts.Render("~/bundles/modernizr")*@
+</head>
+<body>
+    <div class="d-flex flex-column position-fixed p-3">
+        <div id="menuLogo" class="my-4" style="font-size: 30px">@Html.ActionLink("FOTOS", "Index", "Home")</div>
+        <div class="my-1 p-2" style="font-size: 20px">@Html.ActionLink("Home", "Index", "Home")</div>
+        <div class="my-1 p-2" style="font-size: 20px">@Html.ActionLink("Explore", "Index", "Explore")</div>
+        <div class="my-1 p-2" style="font-size: 20px">@Html.ActionLink("Shop", "Index", "Shop")</div>
+        <div class="my-1 p-2" style="font-size: 20px">@Html.ActionLink("My profile", "Index", "UserProfile")</div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
+</body>
+</html>

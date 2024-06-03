@@ -158,5 +158,17 @@ namespace Fotos.Controllers.Admin
             }
             return Content("Cannot create");
         }
+        [HttpPost]
+        public ActionResult GetAlbumsByUserId(int idNguoiDung)
+        {
+            var albums = db.Albums.Where(a => a.id_nguoi_dung == idNguoiDung).ToList();
+
+            if (albums == null || albums.Count == 0)
+            {
+                return HttpNotFound();
+            }
+
+            return Json(albums, JsonRequestBehavior.AllowGet);
+        }
     }
 }
