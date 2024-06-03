@@ -1,6 +1,6 @@
 .vs/
-Fotos/bin/
-Fotos/obj/
+/Fotos/bin/
+/Fotos/obj/
 Models/bin/
 Models/obj/
 /Fotos/Web.config
