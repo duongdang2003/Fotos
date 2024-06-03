@@ -143,6 +143,7 @@
     <Compile Include="Controllers\Admin\PhotosController.cs" />
     <Compile Include="Controllers\ExploreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ShopItemController.cs" />
     <Compile Include="Controllers\SignInController.cs" />
@@ -533,6 +534,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="assets\shop item\" />
+    <Folder Include="Views\Order\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
