@@ -1,6 +1,8 @@
 .vs/
 Fotos/bin/
 Fotos/obj/
+Models/bin/
+Models/obj/
 /Fotos/Web.config
 # DNX
 project.lock.json

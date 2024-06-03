@@ -10,8 +10,9 @@ namespace Fotos.Controllers
     public class ShopItemController : Controller
     {
         // GET: ShopItem
-        public ActionResult Index(string productName, string description, string picture, string date, string ownerName, string numberOfPhotos, string email)
+        public ActionResult Index(string userName, string productName, string description, string picture, string date, string ownerName, string numberOfPhotos, string email)
         {
+            ViewBag.UserName = userName;
             ViewBag.ProductName = productName;
             ViewBag.Description = description;
             ViewBag.Picture = picture;

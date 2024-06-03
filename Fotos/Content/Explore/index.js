@@ -24,9 +24,10 @@ function GetAllImages() {
 }
 function Post(title, description, coverSrc, imageSrcList) {
     const imgSrc = coverSrc.replace(/ /g, "%20")
+    console.log(imageSrcList.toString().replace(/ /g, "%20"))
     return `
         <div class="card my-2" style="width: 30rem; border: none" name="card" >
-                <img src=${imgSrc} class="card-img-top post" data-bs-toggle="modal" data-bs-target="#imageSlider" imgssrc=${imageSrcList.toString().replace(/ /g, "%20")}">
+                <img src=${imgSrc} class="card-img-top post" data-bs-toggle="modal" data-bs-target="#imageSlider" imgssrc=${imageSrcList.toString().replace(/ /g, "%20")}>
                 <div class="card-body">
                     <div class="d-flex mb-1">
                         <div class="d-flex align-items-center like-group" status="nolike">
@@ -109,6 +110,7 @@ GetAllImages().then(users => {
     $(".post").click(function () {
         $("#slider-content").empty();
         const imgList = $(this).attr('imgssrc').split(",")
+        console.log(imgList)
         $("#slider-content").append(ActiveCarouseItem(imgList[0]));
         for (i = 1; i < imgList.length; i++) {
             $("#slider-content").append(CarouselItem(imgList[i]))

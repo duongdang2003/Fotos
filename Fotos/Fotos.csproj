@@ -152,6 +152,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AlbumItem.cs" />
     <Compile Include="Models\PhotosModel.cs" />
     <Compile Include="Models\SignInModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -406,6 +407,13 @@
     <Content Include="assets\shop\scss\_site-isotope.scss" />
     <Content Include="assets\shop\scss\_site-navbar.scss" />
     <Content Include="assets\shop\scss\_variables.scss" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -426,13 +434,6 @@
     <Content Include="Views\Explore\js\index.js" />
     <Content Include="Views\Explore\js\jquery.min.js" />
     <Content Include="Views\Explore\js\pace.js" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
