@@ -9,8 +9,10 @@ namespace Fotos.Controllers
     public class OrderController : Controller
     {
         // GET: Order
-        public ActionResult Index()
+        public ActionResult Index(string userName, string productName)
         {
+            ViewBag.UserName = userName;
+            ViewBag.ProductName = productName;
             return View();
         }
     }

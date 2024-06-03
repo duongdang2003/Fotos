@@ -198,12 +198,14 @@
                                 </div>
                                 <script>
                                     function navigateToDetails() {
-                                        window.location.href = '@Url.Action("Index", "Order")';
+                                        var userName = '@userName';
+                    var productName = '@productName';
+                    window.location.href = '@Url.Action("Index", "Order")?userName=' + encodeURIComponent(userName) + '&productName=' + encodeURIComponent(productName);
                                     }
                                 </script>
                                 <div class="col-sm-12 col-md-12 col-lg-12 mb-4">
                                     <div class="detail-v1 d-flex justify-content-end">
-                                        <button type="button" class="btn btn-dark" onclick="navigateToDetails()">Add to Cart</button>
+                                        <button type="button" class="btn btn-dark" onclick="navigateToDetails()">Buy</button>
                                     </div>
                                 </div>
                             </div>

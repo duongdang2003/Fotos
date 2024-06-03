@@ -231,6 +231,7 @@
     <Content Include="assets\js\slides.min.js" />
     <Content Include="assets\js\soundcloud.min.js" />
     <Content Include="assets\js\swiper.min.js" />
+    <Content Include="assets\order\css\style.css" />
     <Content Include="assets\shop\css\aos.css" />
     <Content Include="assets\shop\css\bootstrap.min.css" />
     <Content Include="assets\shop\css\index.html" />
@@ -408,7 +409,9 @@
     <Content Include="assets\shop\scss\_site-isotope.scss" />
     <Content Include="assets\shop\scss\_site-navbar.scss" />
     <Content Include="assets\shop\scss\_variables.scss" />
+    <Content Include="Views\Order\css\style.css" />
     <Content Include="Web.config" />
+    <Content Include="Views\Order\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -534,7 +537,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="assets\shop item\" />
-    <Folder Include="Views\Order\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
