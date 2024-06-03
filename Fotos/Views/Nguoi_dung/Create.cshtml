@@ -17,7 +17,7 @@
             <hr />
             <div class="row w-75">
                 <div class="col-6">
-                    <div class="form-group ">
+                    <div class="form-group">
                         @Html.LabelFor(model => model.ten_nguoi_dung, "Username", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.ten_nguoi_dung, new { htmlAttributes = new { @class = "form-control" } })
@@ -46,11 +46,6 @@
                 </div>
             </div>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            
-
-
-            
-
             <div class="form-group">
                 @Html.LabelFor(model => model.salt, "Salt", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">

@@ -157,7 +157,7 @@
                                         console.error(error);
                                     })
                             </script>
-                            <a id="link-@i" href="@Url.Action("Index", "ShopItem", new { userName = UserName, productName = Name, description = Des, picture = imgSrc, date = Date, ownerName = OwnerName, numberOfPhotos = NumberOfPhotos, email = Email })" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="2">
+                            <a id="link-@i" href="@Url.Action("Index", "ShopItem", new { userName = @UserName, productName = Name, description = Des, picture = imgSrc, date = Date, ownerName = OwnerName, numberOfPhotos = NumberOfPhotos, email = Email })" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="2">
                                 <div class="overlay">
                                     <span class="wrap-icon icon-link2"></span>
                                     <div class="portfolio-item-content">
