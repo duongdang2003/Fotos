@@ -132,5 +132,47 @@ namespace Fotos.Controllers.Admin
             }
             base.Dispose(disposing);
         }
+        public ActionResult CreatePhoto(List<Photo> photos)
+        {
+            if (photos == null || !photos.Any())
+            {
+                return Content("No photos");
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    foreach (Photo photo in photos)
+                    {
+                        photo.url_anh = photo.url_anh;
+                        photo.id_nguoi_dung = photo.id_nguoi_dung;
+                        photo.tieu_de_anh = photo.tieu_de_anh ?? string.Empty;
+                        photo.mo_ta_anh = photo.mo_ta_anh ?? string.Empty;
+                        photo.ngay_tai_anh_len = DateTime.Now;
+                        photo.so_luot_danh_gia = 0;
+                        photo.so_luot_thich = 0;
+
+                        db.Photos.Add(photo);
+
+                    }
+                    db.SaveChanges();
+                    return Content("Save new photo success");
+                }
+                catch (Exception ex)
+                {
+                    var innerExceptionMessage = ex.InnerException?.InnerException?.Message ?? ex.Message;
+                    return Content(innerExceptionMessage);
+                }
+
+
+
+
+            }
+
+            var errorList = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+            return Json(new { success = false, message = "Validation failed", errors = errorList });
+        }
+
     }
 }

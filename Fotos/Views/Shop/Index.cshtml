@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Untree.co">
-    <link rel="shortcut icon" href="favicon.png">
+    @*<link rel="shortcut icon" href="favicon.png">*@
 
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -81,7 +81,6 @@
                 <div class="col-md-7">
                     <h1 class="heading gsap-reveal-hero mb-3"><strong>Fotos<span class="text-primary">.</span> Shop</strong></h1>
                     <h2 class="subheading gsap-reveal-hero mb-4">
-                        
                     </h2>
                     @*<p class="gsap-reveal-hero"><a href="https://untree.co/" target="_blank" class="btn btn-outline-black">More free templates here</a></p>*@
                 </div>
@@ -89,7 +88,6 @@
 
         </div>
     </div>
-
 
     <div class="untree_co-section untree_co-section-4 pb-0" id="portfolio-section">
         <div class="container">
@@ -103,36 +101,77 @@
 
                     @foreach (var item in Model)
                     {
+                        var UserName = item.Nguoi_dung.ten_nguoi_dung;
                         var Name = item.tieu_de_album;
                         var Des = item.mo_ta_album;
                         var Date = item.ngay_tao_album;
                         var OwnerName = item.Nguoi_dung.ten_day_du;
                         var NumberOfPhotos = item.so_luong_anh;
                         var Email = item.Nguoi_dung.email;
-                        
-                        
-                        var imgSrc = $"/assets/shop/images/img_{i + 1}.jpg";
-                        <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
 
-                            <a href="@Url.Action("Index", "ShopItem", new { productName = Name, description = Des, picture = imgSrc, date = Date, ownerName = OwnerName, numberOfPhotos = NumberOfPhotos, email = Email })" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="2">
+                        var imgSrc = $"/assets/shop/images/img_{i + 1}.jpg";
+
+
+                        <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
+                            <script>
+                                function GetImageWithAlbumName(userName, albumName, elementId, linkId) {
+                                    return new Promise((resolve, reject) => {
+                                        var xhr = new XMLHttpRequest();
+                                        xhr.open('POST', 'https://localhost:44363/Home/GetImageWithAlbumName', true); // Adjust the URL to match your HomeController endpoint
+                                        var formData = new FormData();
+                                        formData.append("userName", userName);
+                                        formData.append("albumName", albumName);
+
+                                        xhr.onreadystatechange = function () {
+                                            if (xhr.readyState === XMLHttpRequest.DONE) {
+                                                if (xhr.status === 200) {
+                                                    try {
+                                                        var imagePaths = JSON.parse(xhr.responseText);
+                                                        resolve(imagePaths); // Resolve the promise with the image paths array
+                                                    } catch (e) {
+                                                        reject('Error parsing response: ' + e.message);
+                                                    }
+                                                } else {
+                                                    reject('Error: ' + xhr.responseText); // Reject the promise with the error message
+                                                }
+                                            }
+                                        };
+
+                                        xhr.send(formData);
+                                    });
+                                }
+
+                                GetImageWithAlbumName('@item.Nguoi_dung.ten_nguoi_dung', '@item.tieu_de_album', 'img-@i', 'link-@i')
+                                    .then(imagePaths => {
+                                        var heading = document.getElementById('img-@i');
+                                        heading.src = imagePaths[0];
+                                        var linkElement = document.getElementById('link-@i');
+                                        var currentHref = linkElement.getAttribute('href');
+
+                                        console.log(imagePaths[0])
+
+                                        var newHref = currentHref.replace(/picture=[^&]*/, 'picture=' + imagePaths[0]);
+                                        linkElement.setAttribute('href', newHref);
+                                    })
+                                    .catch(error => {
+                                        console.error(error);
+                                    })
+                            </script>
+                            <a id="link-@i" href="@Url.Action("Index", "ShopItem", new { userName = UserName, productName = Name, description = Des, picture = imgSrc, date = Date, ownerName = OwnerName, numberOfPhotos = NumberOfPhotos, email = Email })" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="2">
                                 <div class="overlay">
                                     <span class="wrap-icon icon-link2"></span>
                                     <div class="portfolio-item-content">
-                                        <h3>White book</h3>
+                                        <h3>@Name</h3>
                                         <p>web, branding</p>
                                     </div>
                                 </div>
-                                <img src="@imgSrc" class="lazyload  img-fluid" alt="Images" />
+                                <img id="img-@i" src="@imgSrc" class="lazyload  img-fluid" alt="Images" />
                             </a>
                         </div>
                         i++;
                     }
                 </div>
             </div>
-
-
-            <!-- </div>
-            </div> -->
         </div>
     </div>
     <div id="overlayer"></div>
@@ -141,6 +180,8 @@
             <span class="sr-only">Loading...</span>
         </div>
     </div>
+
+
 
     <script src="/assets/shop/js/jquery-3.4.1.min.js"></script>
     <script src="/assets/shop/js/popper.min.js"></script>
@@ -158,9 +199,10 @@
     <script src="/assets/shop/js/TweenMax.min.js"></script>
     <script src="/assets/shop/js/ScrollMagic.min.js"></script>
     <script src="/assets/shop/js/scrollmagic.animation.gsap.min.js"></script>
-
-
     <script src="/assets/shop/js/custom.js"></script>
+
+
+
 
 </body>
 
