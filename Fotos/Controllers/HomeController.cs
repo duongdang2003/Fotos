@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fotos.Code;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,6 +21,9 @@ namespace Fotos.Controllers
             {
                 return RedirectToAction("Index", "SignIn");
             }*/
+            var username = SessionHelper.GetSession().username;
+            ViewBag.Username = username;
+            System.Diagnostics.Debug.WriteLine(username);
             return View();
         }
 

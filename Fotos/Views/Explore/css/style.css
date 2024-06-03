@@ -13,6 +13,10 @@
       font-weight: normal;
       font-style: normal;
       }
+    @font-face {
+        font-family: "Light Stories";
+        src: url(./fonts/light-stories.ttf)
+    }
 *{
 padding: 0;
 margin: 0;
@@ -32,7 +36,9 @@ html{
   overflow: hidden;
 }
 
-
+.light-stories {
+    font-family: 'Light Stories';
+}
 
 .parallax-slider .swiper-slide {
   position: relative;
